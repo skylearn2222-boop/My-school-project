@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ফি পরিশোধ | আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.payment-wrap {
+  max-width: 560px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.pay-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 24px; overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+body.dark .pay-card { background: #152010; }
+
+.pay-card-header {
+  padding: 20px 24px 16px;
+  display: flex; align-items: center; gap: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.pay-card-icon {
+  width: 48px; height: 48px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.pay-card-title { font-family: 'Noto Serif Bengali',serif; font-size: 1rem; font-weight: 700; color: var(--dark); }
+.pay-card-sub { font-size: 0.78rem; color: var(--text-soft); margin-top: 2px; }
+.pay-card-body { padding: 20px 24px; }
+
+/* Number display */
+.pay-number {
+  background: linear-gradient(135deg, var(--deep), var(--forest));
+  border-radius: 18px; padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-bottom: 16px;
+}
+.pay-number-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.pay-number-val { font-size: 1.5rem; font-weight: 800; color: white; letter-spacing: 2px; font-family: 'Sora',sans-serif; }
+.pay-copy-btn {
+  background: rgba(255,255,255,0.15); border: none; border-radius: 12px;
+  color: white; padding: 10px 16px; cursor: pointer; font-size: 0.8rem;
+  font-weight: 600; display: flex; align-items: center; gap: 6px;
+  font-family: 'Sora',sans-serif; transition: background 0.2s; flex-shrink: 0;
+}
+.pay-copy-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* Steps */
+.pay-steps { display: flex; flex-direction: column; gap: 14px; }
+.pay-step {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.pay-step-num {
+  width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0;
+  background: var(--light-sky); color: var(--forest);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem; font-weight: 800; font-family: 'Sora',sans-serif;
+}
+body.dark .pay-step-num { background: #0f2518; }
+.pay-step-text { font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; padding-top: 5px; }
+.pay-step-text strong { color: var(--dark); }
+body.dark .pay-step-text strong { color: #e8f5ed; }
+
+/* Charge box */
+.charge-box {
+  background: #fff8e1; border: 1.5px solid #ffe082; border-radius: 16px; padding: 16px 20px;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+body.dark .charge-box { background: #1a1500; border-color: #4a3800; }
+.charge-box i { color: #f59e0b; margin-top: 2px; font-size: 1rem; }
+.charge-box-text { font-size: 0.85rem; color: #92400e; line-height: 1.7; }
+body.dark .charge-box-text { color: #d4a017; }
+.charge-box-text strong { color: #78350f; }
+body.dark .charge-box-text strong { color: #fbbf24; }
+
+/* Warning */
+.warn-box {
+  background: #fff5f5; border: 1.5px solid #fed7d7; border-radius: 16px; padding: 14px 18px;
+  display: flex; align-items: flex-start; gap: 10px; margin-top: 4px;
+}
+body.dark .warn-box { background: #1a0a0a; border-color: #4a1010; }
+.warn-box i { color: #e53e3e; margin-top: 2px; }
+.warn-box-text { font-size: 0.82rem; color: #c53030; line-height: 1.65; }
+body.dark .warn-box-text { color: #fc8181; }
+
+/* Main button */
+.pay-main-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 16px; border-radius: 16px;
+  background: linear-gradient(135deg, var(--forest), var(--emerald));
+  color: white; text-decoration: none; border: none;
+  font-size: 1rem; font-weight: 700; cursor: pointer;
+  font-family: 'Sora','Noto Serif Bengali',sans-serif;
+  box-shadow: 0 10px 28px rgba(13,74,47,0.35);
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.pay-main-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 16px 40px rgba(13,74,47,0.45); }
+</style>
+</head>
+<body>
+<div id="topbar-placeholder"></div>
+<div id="drawer-placeholder"></div>
+<div id="fab-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag"><i class="fas fa-money-bill-wave"></i> ফি পরিশোধ</div>
+    <h1>অনলাইনে <em>ফি</em><br>পরিশোধ করুন</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="payment-wrap">
+
+      <!-- bKash/Nagad Number -->
+      <div class="pay-card reveal">
+        <div class="pay-card-header">
+          <div class="pay-card-icon" style="background:#fce4ec;color:#e91e63;">📱</div>
+          <div>
+            <div class="pay-card-title">bKash / Nagad নম্বর</div>
+            <div class="pay-card-sub">Send Money করুন — Personal নম্বর</div>
+          </div>
+        </div>
+        <div class="pay-card-body">
+          <div class="pay-number">
+            <div>
+              <div class="pay-number-label">বিকাশ / নগদ (Send Money)</div>
+              <div class="pay-number-val">01602-152489</div>
+            </div>
+            <button class="pay-copy-btn" onclick="copyNumber()">
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+          <div class="warn-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="warn-box-text">এটি <strong>Personal নম্বর</strong>। অবশ্যই <strong>Send Money</strong> অপশন ব্যবহার করুন। "Payment" করলে টাকা যাবে না।</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Charge -->
+      <div class="pay-card reveal">
+        <div class="pay-card-header">
+          <div class="pay-card-icon" style="background:#fff8e1;color:#f59e0b;">💰</div>
+          <div>
+            <div class="pay-card-title">Service Charge হিসাব</div>
+            <div class="pay-card-sub">প্রতি ১০০০ টাকায় ২% চার্জ যোগ করুন</div>
+          </div>
+        </div>
+        <div class="pay-card-body">
+          <div class="charge-box">
+            <i class="fas fa-calculator"></i>
+            <div class="charge-box-text">
+              প্রদেয় ফি-এর উপর <strong>২% (প্রতি ১০০০ টাকায় ২০ টাকা)</strong> service charge যোগ করে Send Money করুন।<br><br>
+              <strong>উদাহরণ:</strong><br>
+              • ৫০০ টাকা ফি → ৫০০ + ১০ = <strong>৫১০ টাকা</strong><br>
+              • ১০০০ টাকা ফি → ১০০০ + ২০ = <strong>১০২০ টাকা</strong><br>
+              • ২০০০ টাকা ফি → ২০০০ + ৪০ = <strong>২০৪০ টাকা</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="pay-card reveal">
+        <div class="pay-card-header">
+          <div class="pay-card-icon" style="background:var(--light-sky);color:var(--forest);">📋</div>
+          <div>
+            <div class="pay-card-title">পেমেন্ট করার নিয়ম</div>
+            <div class="pay-card-sub">ধাপে ধাপে অনুসরণ করুন</div>
+          </div>
+        </div>
+        <div class="pay-card-body">
+          <div class="pay-steps">
+            <div class="pay-step">
+              <div class="pay-step-num">১</div>
+              <div class="pay-step-text">bKash বা Nagad অ্যাপ থেকে <strong>Send Money</strong> অপশনে যান</div>
+            </div>
+            <div class="pay-step">
+              <div class="pay-step-num">২</div>
+              <div class="pay-step-text">নম্বর দিন: <strong>01602-152489</strong></div>
+            </div>
+            <div class="pay-step">
+              <div class="pay-step-num">৩</div>
+              <div class="pay-step-text">ফি-এর সাথে <strong>২% service charge যোগ</strong> করে মোট টাকা পাঠান</div>
+            </div>
+            <div class="pay-step">
+              <div class="pay-step-num">৪</div>
+              <div class="pay-step-text">পেমেন্ট সম্পন্ন হলে <strong>SMS দিয়ে জানান</strong> — 01602-152489 নম্বরে</div>
+            </div>
+            <div class="pay-step">
+              <div class="pay-step-num">৫</div>
+              <div class="pay-step-text">নিচের বাটনে click করে <strong>Google Form পূরণ করুন</strong>। Reference এ অবশ্যই <strong>ছাত্রের নাম ও রোল নম্বর</strong> লিখুন এবং <strong>Email দেওয়া বাধ্যতামূলক</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Button -->
+      <div class="reveal">
+        <a href="https://forms.gle/vpsEK8qX5vZwCFmE9" target="_blank" class="pay-main-btn">
+          <i class="fab fa-google" style="font-size:1.1rem;"></i>
+          Google Form পূরণ করুন
+          <i class="fas fa-external-link-alt" style="font-size:0.85rem;opacity:0.8;"></i>
+        </a>
+        <p style="text-align:center;margin-top:12px;font-size:0.76rem;color:var(--text-soft);">
+          <i class="fas fa-shield-alt"></i> Form এ Email দেওয়া বাধ্যতামূলক। Payment confirmation পাঠানো হবে।
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script>
+function copyNumber() {
+  navigator.clipboard.writeText('01602152489').then(() => {
+    const btn = document.querySelector('.pay-copy-btn');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    btn.style.background = 'rgba(46,184,114,0.4)';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+      btn.style.background = '';
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>

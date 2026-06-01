@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ড্যাশবোর্ড | আফতাবউদ্দিন স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.dash-wrap { max-width: 900px; margin: 90px auto 40px; padding: 16px; }
+.dash-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+.dash-header h1 { font-family:'Noto Serif Bengali',serif; color:var(--dark); margin:0; font-size:1.6rem; }
+body.dark .dash-header h1 { color:white; }
+.logout-btn { padding:10px 22px; background:linear-gradient(135deg,#ef4444,#dc2626); color:white; border:none; border-radius:10px; font-weight:700; cursor:pointer; font-size:0.9rem; }
+.user-card { background:white; border:1px solid var(--border); border-radius:18px; padding:24px; margin-bottom:20px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:16px; }
+body.dark .user-card { background:#152010; }
+.user-avatar { width:60px; height:60px; background:linear-gradient(135deg,var(--forest),var(--emerald)); border-radius:14px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.6rem; flex-shrink:0; }
+.user-email { font-weight:700; color:var(--dark); font-size:1rem; margin-bottom:4px; }
+body.dark .user-email { color:white; }
+.user-badge { background:#dcfce7; color:#16a34a; padding:4px 12px; border-radius:20px; font-size:0.78rem; font-weight:600; display:inline-block; }
+body.dark .user-badge { background:rgba(22,163,74,0.15); }
+
+.section-title { font-family:'Noto Serif Bengali',serif; color:var(--dark); font-size:1.1rem; font-weight:700; margin:24px 0 12px; }
+body.dark .section-title { color:white; }
+
+/* Payment Cards */
+.payment-card { background:white; border:1px solid var(--border); border-radius:16px; padding:18px 20px; margin-bottom:12px; box-shadow:var(--shadow-sm); }
+body.dark .payment-card { background:#152010; }
+.payment-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
+.payment-name { font-weight:700; color:var(--dark); font-size:0.95rem; }
+body.dark .payment-name { color:white; }
+.payment-month { font-size:0.8rem; color:var(--text-soft); margin-top:3px; }
+.badge { padding:5px 12px; border-radius:20px; font-size:0.78rem; font-weight:700; }
+.badge-success { background:#dcfce7; color:#16a34a; }
+.badge-pending { background:#fef9c3; color:#ca8a04; }
+body.dark .badge-success { background:rgba(22,163,74,0.2); }
+body.dark .badge-pending { background:rgba(202,138,4,0.2); }
+.payment-details { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.detail-item { font-size:0.8rem; color:var(--text-soft); }
+.detail-item span { color:var(--dark); font-weight:600; }
+body.dark .detail-item span { color:rgba(255,255,255,0.85); }
+.receipt-btn { display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:8px 16px; background:linear-gradient(135deg,var(--forest),var(--emerald)); color:white; border-radius:10px; font-size:0.82rem; font-weight:600; text-decoration:none; }
+
+.empty-state { text-align:center; padding:40px 20px; color:var(--text-soft); }
+.empty-icon { font-size:3rem; margin-bottom:12px; }
+
+.loading-box { text-align:center; padding:40px; }
+.spinner { width:36px; height:36px; border:4px solid rgba(13,74,47,0.2); border-top-color:var(--forest); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 12px; }
+@keyframes spin { to{transform:rotate(360deg)} }
+
+.stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+.stat-card { background:white; border:1px solid var(--border); border-radius:14px; padding:16px; text-align:center; box-shadow:var(--shadow-sm); }
+body.dark .stat-card { background:#152010; }
+.stat-num { font-size:1.6rem; font-weight:800; color:var(--forest); }
+.stat-label { font-size:0.72rem; color:var(--text-soft); margin-top:4px; }
+</style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<div class="dash-wrap">
+  <div id="loadingState" class="loading-box">
+    <div class="spinner"></div>
+    <p style="color:var(--text-soft);">লোড হচ্ছে...</p>
+  </div>
+
+  <div id="mainContent" style="display:none;">
+    <div class="dash-header">
+      <h1>ড্যাশবোর্ড</h1>
+      <button class="logout-btn" id="logoutBtn">🚪 লগআউট</button>
+    </div>
+
+    <div class="user-card">
+      <div class="user-avatar">👤</div>
+      <div>
+        <div class="user-email" id="userEmailText"></div>
+        <div class="user-badge">✓ সক্রিয় অ্যাকাউন্ট</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" id="totalPayments">0</div>
+        <div class="stat-label">মোট পেমেন্ট</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="verifiedPayments" style="color:#16a34a;">0</div>
+        <div class="stat-label">যাচাইকৃত</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="pendingPayments" style="color:#ca8a04;">0</div>
+        <div class="stat-label">পেন্ডিং</div>
+      </div>
+    </div>
+
+    <div class="section-title">👤 প্রোফাইল</div>
+    <div id="profileSection" class="payment-card" style="margin-bottom:20px;">
+      <div class="loading-box" style="padding:20px;">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <div class="section-title">💳 পেমেন্ট ইতিহাস</div>
+    <div id="paymentList"></div>
+  </div>
+</div>
+
+<script src="components.js"></script>
+<script type="module">
+import { auth, signOut, onAuthStateChanged } from './firebase-config.js';
+
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkPj2BxymBMdeEK5Nm9xpI1aaXA_rZbtfBMXxIH9Z0pKnfg2e5kZBjC0u7m_zuT9vRficY2wKgYZIi/pub?gid=2133803535&single=true&output=csv';
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) { window.location.href = 'login.html'; return; }
+
+  document.getElementById('userEmailText').textContent = user.email;
+
+  try {
+    const res = await fetch(CSV_URL + '&t=' + Date.now(), { cache: 'no-store' });
+    const text = await res.text();
+    const rows = parseCSV(text);
+    const userEmail = user.email.toLowerCase().trim();
+
+    // Find user payments by email (column index 11 = E-mail column)
+    const myPayments = rows.filter(r => {
+      const email = (r[11] || '').toLowerCase().trim();
+      return email === userEmail;
+    });
+
+    document.getElementById('totalPayments').textContent = myPayments.length;
+    document.getElementById('verifiedPayments').textContent = myPayments.filter(r => r[12] === 'TRUE').length;
+    document.getElementById('pendingPayments').textContent = myPayments.filter(r => r[12] !== 'TRUE').length;
+
+    renderProfile(myPayments);
+    renderPayments(myPayments);
+  } catch(e) {
+    document.getElementById('paymentList').innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>ডেটা লোড করতে সমস্যা হচ্ছে</p></div>`;
+  }
+
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+});
+
+function renderProfile(payments) {
+  const profile = document.getElementById('profileSection');
+  if (!payments.length) {
+    profile.innerHTML = `<div class="empty-state"><div class="empty-icon">👤</div><p>প্রোফাইল তথ্য পাওয়া যায়নি</p></div>`;
+    return;
+  }
+  // Use latest payment row for profile info
+  const r = payments[payments.length - 1];
+  profile.innerHTML = `
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+      <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--forest),var(--emerald));border-radius:14px;display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;flex-shrink:0;">👤</div>
+      <div>
+        <div style="font-weight:800;font-size:1.1rem;color:var(--dark);">${r[1] || '-'}</div>
+        <div style="font-size:0.82rem;color:var(--text-soft);margin-top:4px;">${r[11] || ''}</div>
+      </div>
+    </div>
+    <div class="payment-details">
+      <div class="detail-item">শ্রেণী: <span>${r[2] || '-'}</span></div>
+      <div class="detail-item">শাখা: <span>${r[3] || '-'}</span></div>
+      <div class="detail-item">Roll/ID: <span>${r[8] || '-'}</span></div>
+      <div class="detail-item">মোট পেমেন্ট: <span>${payments.length} টি</span></div>
+    </div>
+  `;
+  // fix dark mode text
+  profile.querySelectorAll('.detail-item').forEach(el => {
+    el.style.fontSize = '0.85rem';
+    el.style.color = 'var(--text-soft)';
+  });
+}
+
+function renderPayments(payments) {
+  const list = document.getElementById('paymentList');
+  if (!payments.length) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><p>এখনো কোনো পেমেন্ট পাওয়া যায়নি</p></div>`;
+    return;
+  }
+
+  list.innerHTML = payments.reverse().map(r => {
+    const verified = r[12] === 'TRUE';
+    const receiptUrl = r[14] || '';
+    return `
+    <div class="payment-card">
+      <div class="payment-top">
+        <div>
+          <div class="payment-name">${r[1] || ''} — ${r[6] || ''}</div>
+          <div class="payment-month">📅 ${r[7] || ''} মাস | ${r[0] ? r[0].split(' ')[0] : ''}</div>
+        </div>
+        <span class="badge ${verified ? 'badge-success' : 'badge-pending'}">
+          ${verified ? '✅ যাচাই হয়েছে' : '⏳ পেন্ডিং'}
+        </span>
+      </div>
+      <div class="payment-details">
+        <div class="detail-item">শ্রেণী: <span>${r[2] || '-'}</span></div>
+        <div class="detail-item">শাখা: <span>${r[3] || '-'}</span></div>
+        <div class="detail-item">পেমেন্ট: <span>${r[9] || '-'}</span></div>
+        <div class="detail-item">Roll: <span>${r[8] || '-'}</span></div>
+      </div>
+      ${receiptUrl ? `<a href="${receiptUrl}" target="_blank" class="receipt-btn">📄 রিসিট দেখুন</a>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function parseCSV(text) {
+  const lines = text.split('\n');
+  return lines.slice(1).filter(l => l.trim()).map(line => {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (const char of line) {
+      if (char === '"') { inQuotes = !inQuotes; }
+      else if (char === ',' && !inQuotes) { result.push(current.trim()); current = ''; }
+      else { current += char; }
+    }
+    result.push(current.trim());
+    return result;
+  });
+}
+
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+  await signOut(auth);
+  window.location.href = 'login.html';
+});
+</script>
+</body>
+</html>

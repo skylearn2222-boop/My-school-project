@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>গ্যালারি | আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 12px;
+}
+.gallery-item {
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+}
+.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow);
+}
+.gallery-item img {
+  width: 100%; height: 240px;
+  object-fit: cover; display: block;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-caption {
+  padding: 14px 16px;
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 0.88rem; font-weight: 600;
+  color: var(--dark);
+}
+.gallery-caption span {
+  font-size: 0.75rem; color: var(--text-soft);
+  font-weight: 400; display: block; margin-top: 3px;
+}
+
+/* Filter Buttons */
+.gallery-filters {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin: 24px 0 8px;
+}
+.gallery-filter-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 50px;
+  border: 1.5px solid var(--border);
+  background: white; color: var(--text-soft);
+  font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; font-family: 'Sora','Noto Serif Bengali',sans-serif;
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.gallery-filter-btn:hover { background: var(--light-sky); color: var(--forest); border-color: rgba(46,184,114,0.4); }
+.gallery-filter-btn.active { background: var(--forest); color: white; border-color: var(--forest); box-shadow: 0 4px 14px rgba(13,74,47,0.3); }
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0;
+  background: rgba(6,26,13,0.95);
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+.lightbox.open { opacity: 1; pointer-events: all; }
+.lightbox img {
+  max-width: 90vw; max-height: 85vh;
+  border-radius: 20px; object-fit: contain;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+.lightbox.open img { transform: scale(1); }
+.lightbox-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.15);
+  border: none; border-radius: 12px;
+  color: white; font-size: 1.2rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.25); transform: scale(1.1); }
+.lightbox-nav {
+  position: absolute; top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.15);
+  border: none; border-radius: 12px;
+  color: white; font-size: 1.1rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+.lightbox-counter {
+  position: absolute; bottom: 20px;
+  color: rgba(255,255,255,0.6); font-size: 0.82rem;
+}
+</style>
+</head>
+<body>
+<div id="topbar-placeholder"></div>
+<div id="drawer-placeholder"></div>
+<div id="fab-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag"><i class="fas fa-images"></i> গ্যালারি</div>
+    <h1>আমাদের <em>স্মৃতির</em><br>ভান্ডার</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-tag"><i class="fas fa-camera"></i> ফটো গ্যালারি</div>
+      <h2 class="sec-title">স্কুলের বিশেষ মুহূর্তসমূহ</h2>
+      <p class="sec-desc">পুরস্কার বিতরণ, অনুষ্ঠান ও বিভিন্ন কার্যক্রমের স্মরণীয় মুহূর্তগুলো।</p>
+    </div>
+
+    <!-- ফিল্টার বাটন -->
+    <div class="gallery-filters reveal">
+      <button class="gallery-filter-btn active" onclick="filterGallery(this,'all')"><i class="fas fa-th"></i> সব</button>
+      <button class="gallery-filter-btn" onclick="filterGallery(this,'puroskar')"><i class="fas fa-trophy"></i> পুরস্কার বিতরণ</button>
+      <button class="gallery-filter-btn" onclick="filterGallery(this,'ekushey')"><i class="fas fa-flag"></i> একুশে ফেব্রুয়ারি</button>
+      <button class="gallery-filter-btn" onclick="filterGallery(this,'iftar')"><i class="fas fa-moon"></i> ইফতার মাহফিল</button>
+      <button class="gallery-filter-btn" onclick="filterGallery(this,'scout')"><i class="fas fa-campground"></i> স্কাউট</button>
+      <button class="gallery-filter-btn" onclick="filterGallery(this,'doa')"><i class="fas fa-hands-praying"></i> দোয়া মাহফিল</button>
+      <button class="gallery-filter-btn" onclick="filterGallery(this,'khela')"><i class="fas fa-futbol"></i> খেলাধুলা</button>
+      <button class="gallery-filter-btn" onclick="filterGallery(this,'exam')"><i class="fas fa-pen"></i> পরীক্ষা</button>
+    </div>
+
+    <div class="gallery-grid" data-stagger id="galleryGrid">
+
+      <!-- ===== পুরনো ৫টা ছবি (আগে থেকে ছিল) ===== -->
+      <div class="gallery-item reveal" data-cat="puroskar" onclick="openLightbox(0)">
+        <img src="photo1.webp" alt="পুরস্কার বিতরণ অনুষ্ঠান">
+        <div class="gallery-caption">পুরস্কার বিতরণ অনুষ্ঠান<span>বার্ষিক পরীক্ষায় কৃতি শিক্ষার্থী</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="puroskar" onclick="openLightbox(1)">
+        <img src="photo2.webp" alt="কৃতি শিক্ষার্থী সংবর্ধনা">
+        <div class="gallery-caption">কৃতি শিক্ষার্থী সংবর্ধনা<span>বার্ষিক পুরস্কার বিতরণী</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="puroskar" onclick="openLightbox(2)">
+        <img src="photo3.webp" alt="শিক্ষার্থী ও শিক্ষক দল">
+        <div class="gallery-caption">শিক্ষার্থী ও শিক্ষক দল<span>স্কুল ক্যাম্পাসে</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="puroskar" onclick="openLightbox(3)">
+        <img src="photo4.webp" alt="পুরস্কার বিতরণ অনুষ্ঠান ২০২২">
+        <div class="gallery-caption">পুরস্কার বিতরণ অনুষ্ঠান ২০২২<span>কৃতি শিক্ষার্থী সংবর্ধনা</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="puroskar" onclick="openLightbox(4)">
+        <img src="photo5.webp" alt="SSC পরীক্ষার্থীবৃন্দ">
+        <div class="gallery-caption">SSC পরীক্ষার্থীবৃন্দ<span>কৃতিত্বের সাথে উত্তীর্ণ</span></div>
+      </div>
+
+      <!-- ===== একুশে ফেব্রুয়ারি ===== -->
+      <div class="gallery-item reveal" data-cat="ekushey" onclick="openLightbox(5)">
+        <img src="event1.webp" alt="একুশে ফেব্রুয়ারি শহীদ মিনারে ফুল দেওয়া">
+        <div class="gallery-caption">একুশে ফেব্রুয়ারি<span>শহীদ মিনারে পুষ্পস্তবক অর্পণ</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="ekushey" onclick="openLightbox(6)">
+        <img src="event2.webp" alt="শহীদ দিবস পালন">
+        <div class="gallery-caption">শহীদ দিবস পালন<span>ভাষা শহীদদের প্রতি গভীর শ্রদ্ধাঞ্জলি</span></div>
+      </div>
+
+      <!-- ===== ইফতার মাহফিল ===== -->
+      <div class="gallery-item reveal" data-cat="iftar" onclick="openLightbox(7)">
+        <img src="event3.webp" alt="প্রাক্তন শিক্ষার্থীদের ইফতার মাহফিল">
+        <div class="gallery-caption">ইফতার মাহফিল<span>প্রাক্তন শিক্ষার্থীদের পুনর্মিলনী</span></div>
+      </div>
+
+      <!-- ===== স্কাউট ===== -->
+      <div class="gallery-item reveal" data-cat="scout" onclick="openLightbox(8)">
+        <img src="event4.webp" alt="স্কাউট প্যারেড">
+        <div class="gallery-caption">স্কাউট প্যারেড<span>বিদ্যালয়ের স্কাউট দলের কুচকাওয়াজ</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="scout" onclick="openLightbox(9)">
+        <img src="event5.webp" alt="স্কাউট মার্চ পাস্ট">
+        <div class="gallery-caption">স্কাউট মার্চ পাস্ট<span>বিদ্যালয়ের স্কাউট দলের বিশেষ প্রদর্শনী</span></div>
+      </div>
+
+      <!-- ===== দোয়া মাহফিল ===== -->
+      <div class="gallery-item reveal" data-cat="doa" onclick="openLightbox(10)">
+        <img src="event6.webp" alt="দোয়া মাহফিল">
+        <div class="gallery-caption">দোয়া মাহফিল<span>বিশেষ দোয়া অনুষ্ঠান</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="doa" onclick="openLightbox(11)">
+        <img src="event7.webp" alt="শিক্ষার্থীদের দোয়া মাহফিল">
+        <div class="gallery-caption">শিক্ষার্থীদের দোয়া মাহফিল<span>সকল শ্রেণির শিক্ষার্থীদের অংশগ্রহণ</span></div>
+      </div>
+
+      <!-- ===== পুরস্কার বিতরণ (কুইজ) ===== -->
+      <div class="gallery-item reveal" data-cat="puroskar" onclick="openLightbox(12)">
+        <img src="event8.webp" alt="কুইজ কনটেস্ট পুরস্কার বিতরণ">
+        <div class="gallery-caption">পুরস্কার বিতরণী<span>কুইজ কনটেস্টে বিজয়ীদের পুরস্কার প্রদান</span></div>
+      </div>
+
+      <!-- ===== পরীক্ষা ===== -->
+      <div class="gallery-item reveal" data-cat="exam" onclick="openLightbox(13)">
+        <img src="event9.webp" alt="ভাইবা পরীক্ষার দৃশ্য">
+        <div class="gallery-caption">ভাইবা পরীক্ষা<span>শিক্ষার্থীদের মৌখিক পরীক্ষার মুহূর্ত</span></div>
+      </div>
+
+      <!-- ===== খেলাধুলা (নতুন) ===== -->
+      <div class="gallery-item reveal" data-cat="khela" onclick="openLightbox(14)">
+        <img src="event10.webp" alt="ফুটবল টিম">
+        <div class="gallery-caption">ফুটবল দল<span>বিদ্যালয়ের ফুটবল টিমের দলগত ছবি</span></div>
+      </div>
+      <div class="gallery-item reveal" data-cat="khela" onclick="openLightbox(15)">
+        <img src="event11.webp" alt="ফুটবল টুর্নামেন্ট বিজয়ী">
+        <div class="gallery-caption">ফুটবল টুর্নামেন্ট<span>বিজয়ী দলের ট্রফি উদযাপন</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <button class="lightbox-nav lightbox-prev" onclick="changePhoto(-1)"><i class="fas fa-chevron-left"></i></button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="changePhoto(1)"><i class="fas fa-chevron-right"></i></button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script>
+const allPhotos = [
+  'photo1.webp','photo2.webp','photo3.webp','photo4.webp','photo5.webp',
+  'event1.webp','event2.webp','event3.webp','event4.webp','event5.webp',
+  'event6.webp','event7.webp','event8.webp','event9.webp',
+  'event10.webp','event11.webp'
+];
+let current = 0;
+let visibleIndices = allPhotos.map((_,i) => i);
+
+function openLightbox(index) {
+  current = index;
+  document.getElementById('lightboxImg').src = allPhotos[current];
+  const pos = visibleIndices.indexOf(current);
+  document.getElementById('lightboxCounter').textContent = (pos+1) + ' / ' + visibleIndices.length;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function changePhoto(dir) {
+  const pos = visibleIndices.indexOf(current);
+  const newPos = (pos + dir + visibleIndices.length) % visibleIndices.length;
+  current = visibleIndices[newPos];
+  document.getElementById('lightboxImg').src = allPhotos[current];
+  document.getElementById('lightboxCounter').textContent = (newPos+1) + ' / ' + visibleIndices.length;
+}
+function filterGallery(btn, cat) {
+  document.querySelectorAll('.gallery-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const items = document.querySelectorAll('.gallery-item');
+  visibleIndices = [];
+  items.forEach((item, i) => {
+    const match = cat === 'all' || item.dataset.cat === cat;
+    item.style.display = match ? '' : 'none';
+    if (match) visibleIndices.push(i);
+  });
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changePhoto(-1);
+  if (e.key === 'ArrowRight') changePhoto(1);
+});
+</script>
+</body>
+</html>

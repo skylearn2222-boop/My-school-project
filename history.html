@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>স্কুলের ইতিহাস | আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.timeline { position: relative; padding: 20px 0; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 28px; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(180deg, var(--sky), var(--royal), var(--gold));
+}
+.tl-item {
+  display: flex; gap: 24px; margin-bottom: 36px;
+  position: relative;
+}
+.tl-dot {
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--sky), var(--royal));
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.1rem; font-weight: 800;
+  box-shadow: 0 6px 20px rgba(10,109,184,0.3);
+  position: relative; z-index: 2;
+}
+.tl-content {
+  background: white; border: 1px solid var(--border);
+  border-radius: 20px; padding: 22px 24px;
+  box-shadow: var(--shadow-sm); flex: 1;
+  transition: all 0.35s;
+}
+.tl-content:hover { transform: translateX(6px); box-shadow: var(--shadow); }
+.tl-year { font-size: 0.72rem; font-weight: 700; color: var(--azure); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+.tl-title { font-family: 'Noto Serif Bengali', serif; font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.tl-desc { font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; }
+
+.founder-card {
+  background: linear-gradient(145deg, var(--deep), var(--royal));
+  border-radius: 28px; padding: 40px;
+  display: grid; grid-template-columns: auto 1fr; gap: 28px;
+  align-items: center; margin-bottom: 48px;
+  box-shadow: var(--shadow-lg);
+}
+.founder-avatar {
+  width: 100px; height: 100px;
+  background: rgba(255,255,255,0.15);
+  border: 3px solid rgba(255,255,255,0.25);
+  border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+}
+.founder-label { font-size: 0.72rem; color: var(--gold-light); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.founder-name { font-family: 'Noto Serif Bengali', serif; color: white; font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; }
+.founder-role { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 16px; }
+.founder-desc { font-family: 'Tiro Bangla', serif; font-style: italic; color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.75; border-left: 3px solid var(--gold); padding-left: 16px; }
+
+.achievement-big-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-top: 36px;
+}
+.ach-big {
+  background: white; border: 1px solid var(--border);
+  border-radius: 20px; padding: 24px;
+  text-align: center; transition: all 0.35s;
+}
+.ach-big:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.ach-big-icon { font-size: 2.4rem; margin-bottom: 12px; }
+.ach-big-num { font-size: 2rem; font-weight: 800; color: var(--royal); line-height: 1; margin-bottom: 4px; }
+.ach-big-label { font-size: 0.82rem; color: var(--text-soft); }
+
+.mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+.mission-item {
+  background: var(--pale); border-radius: 18px; padding: 22px;
+  border-left: 4px solid var(--sky);
+  transition: all 0.3s;
+}
+.mission-item:hover { background: white; box-shadow: var(--shadow-sm); }
+.mission-item h4 { font-family: 'Noto Serif Bengali', serif; font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.mission-item p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.65; }
+
+@media (max-width: 600px) {
+  .founder-card { grid-template-columns: 1fr; text-align: center; }
+  .founder-desc { border-left: none; border-top: 3px solid var(--gold); padding-left: 0; padding-top: 16px; }
+  .mission-grid { grid-template-columns: 1fr; }
+  .timeline::before { left: 22px; }
+  .tl-dot { width: 44px; height: 44px; font-size: 0.8rem; }
+}
+</style>
+</head>
+<body>
+<div id="topbar-placeholder"></div>
+<div id="drawer-placeholder"></div>
+<div id="fab-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag"><i class="fas fa-landmark"></i> স্কুলের ইতিহাস</div>
+    <h1>একটি <em>স্বপ্নের</em> যাত্রা —<br>২০০১ থেকে আজ পর্যন্ত</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Founder -->
+    <div class="founder-card reveal">
+      <div class="founder-avatar">👨‍🏫</div>
+      <div>
+        <div class="founder-label">প্রতিষ্ঠাতা ও প্রধান শিক্ষক</div>
+        <div class="founder-name">আতাউর রহমান খান</div>
+        <div class="founder-role">Principal, আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</div>
+        <p class="founder-desc">"শিক্ষার আলো দিয়ে প্রতিটি শিশুর জীবন আলোকিত করাই আমার স্বপ্ন ছিল। সেই স্বপ্ন আজ বাস্তবে রূপ নিয়েছে — আমাদের হাজারো সফল শিক্ষার্থীর মাধ্যমে।"</p>
+      </div>
+    </div>
+
+    <!-- About school text -->
+    <div class="reveal" style="margin-bottom: 48px;">
+      <div class="sec-tag"><i class="fas fa-book-open"></i> প্রতিষ্ঠার গল্প</div>
+      <h2 class="sec-title">সুনামধন্য এই স্কুলের জন্ম</h2>
+      <p class="sec-desc" style="margin-bottom:16px;">সুনামধন্য এই স্কুলটি প্রতিষ্ঠা করেন <strong>আতাউর রহমান খান</strong>, যিনি বর্তমানে অত্র স্কুলের প্রধান শিক্ষক (Principal) হিসেবে কর্মরত আছেন। স্কুলটি আগরপুর বাসস্ট্যান্ড, কুলিয়ারচর, কিশোরগঞ্জ এলাকায় অবস্থিত।</p>
+      <p class="sec-desc" style="margin-bottom:16px;">স্কুলটি ২০০১ সালে প্রতিষ্ঠিত হয় এবং দীর্ঘ প্রায় ২৫ বছর ধরে সুনামের সঙ্গে শিক্ষা কার্যক্রম পরিচালনা করে আসছে।</p>
+      <p class="sec-desc">এই স্কুল থেকে শিক্ষালাভ করা বহু ছাত্রছাত্রী আজ দেশের বিভিন্ন গুরুত্বপূর্ণ পদে স্বনামধন্যভাবে কর্মরত আছে।</p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="reveal" style="margin-bottom: 60px;">
+      <div class="sec-tag"><i class="fas fa-clock-rotate-left"></i> গৌরবময় যাত্রা</div>
+      <h2 class="sec-title" style="margin-bottom:32px;">মাইলফলকসমূহ</h2>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot">২০০১</div>
+          <div class="tl-content">
+            <div class="tl-year">প্রতিষ্ঠাকাল</div>
+            <div class="tl-title">আফতাবউদ্দিন প্রি-ক্যাডেট স্কুলের যাত্রা শুরু</div>
+            <div class="tl-desc">আতাউর রহমান খানের হাত ধরে আগরপুর বাসস্ট্যান্ডে এই স্কুলের প্রতিষ্ঠা হয়। মুষ্টিমেয় শিক্ষার্থী নিয়ে শুরু হয় এক স্বপ্নের পথচলা।</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot" style="background:linear-gradient(135deg,#1a7a4a,#2eb872);">২০১২</div>
+          <div class="tl-content">
+            <div class="tl-year">ঐতিহাসিক সাফল্য</div>
+            <div class="tl-title">🏆 PSC পরীক্ষায় কুলিয়ারচর উপজেলায় প্রথম স্থান</div>
+            <div class="tl-desc">২০১২ সালের PSC পরীক্ষায় কুলিয়ারচর উপজেলায় সকল স্কুলের মধ্যে প্রথম স্থান অধিকার করে স্কুলটি। এটি ছিল একটি ঐতিহাসিক অর্জন।</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot" style="background:linear-gradient(135deg,#c9961f,#f5c842); color:#071829;">২০২৪</div>
+          <div class="tl-content">
+            <div class="tl-year">সাম্প্রতিক সাফল্য</div>
+            <div class="tl-title">⭐ SSC পরীক্ষায় বিজ্ঞান বিভাগে ৬ জন A+ অর্জন</div>
+            <div class="tl-desc">২০২৪ সালের SSC পরীক্ষায় বিজ্ঞান বিভাগ থেকে ৬ জন শিক্ষার্থী কৃতিত্বের সাথে A+ অর্জন করে স্কুলের গৌরব আরো উজ্জ্বল করে।</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot">আজ</div>
+          <div class="tl-content">
+            <div class="tl-year">বর্তমান</div>
+            <div class="tl-title">১০০০+ সফল শিক্ষার্থী — অব্যাহত যাত্রা</div>
+            <div class="tl-desc">এই স্কুল থেকে শিক্ষালাভ করা সহস্রাধিক ছাত্রছাত্রী আজ দেশের বিভিন্ন গুরুত্বপূর্ণ পদে কর্মরত। স্কুলের যাত্রা অব্যাহত আছে, আরো সমৃদ্ধির পথে।</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="reveal" style="margin-bottom:60px;">
+      <div class="sec-tag"><i class="fas fa-trophy"></i> অর্জন</div>
+      <h2 class="sec-title">গৌরবের সংখ্যায়</h2>
+      <div class="achievement-big-grid" data-stagger>
+        <div class="ach-big"><div class="ach-big-icon">🏆</div><div class="ach-big-num">১ম</div><div class="ach-big-label">PSC ২০১২ — উপজেলায় প্রথম</div></div>
+        <div class="ach-big"><div class="ach-big-icon">⭐</div><div class="ach-big-num">৬</div><div class="ach-big-label">SSC ২০২৪ — A+ প্রাপ্ত</div></div>
+        <div class="ach-big"><div class="ach-big-icon">👨‍🎓</div><div class="ach-big-num">১০০০+</div><div class="ach-big-label">সফল শিক্ষার্থী</div></div>
+        <div class="ach-big"><div class="ach-big-icon">📅</div><div class="ach-big-num">২৫+</div><div class="ach-big-label">বছরের অভিজ্ঞতা</div></div>
+      </div>
+    </div>
+
+    <!-- Mission -->
+    <div class="reveal">
+      <div class="sec-tag"><i class="fas fa-bullseye"></i> লক্ষ্য ও উদ্দেশ্য</div>
+      <h2 class="sec-title">আমাদের মিশন ও ভিশন</h2>
+      <div class="mission-grid" data-stagger>
+        <div class="mission-item"><h4>🎯 আমাদের লক্ষ্য</h4><p>প্রতিটি শিক্ষার্থীকে শিক্ষা, নৈতিকতা ও শৃঙ্খলার মাধ্যমে আত্মনির্ভরশীল সুনাগরিক হিসেবে গড়ে তোলা।</p></div>
+        <div class="mission-item"><h4>🌟 আমাদের দৃষ্টিভঙ্গি</h4><p>শিক্ষার আলোয় আলোকিত একটি সমৃদ্ধ সমাজ গঠনে অগ্রণী ভূমিকা পালন করা।</p></div>
+        <div class="mission-item"><h4>💎 আমাদের মূল্যবোধ</h4><p>সততা, পরিশ্রম, দেশপ্রেম ও ধর্মীয় মূল্যবোধ — এই চার স্তম্ভে আমাদের শিক্ষাব্যবস্থা গড়া।</p></div>
+        <div class="mission-item"><h4>🚀 আমাদের প্রতিশ্রুতি</h4><p>প্রতিটি শিশুর মেধা বিকাশে অক্লান্ত পরিশ্রম ও নিষ্ঠার সাথে কাজ করে যাওয়া।</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Big quote -->
+<section style="background:var(--pale); text-align:center; padding:60px 20px;" class="reveal">
+  <p style="font-size:2rem; margin-bottom:12px;">🌿</p>
+  <p style="font-family:'Noto Serif Bengali',serif; font-size:clamp(1.2rem,2.5vw,1.7rem); font-weight:800; color:var(--deep); max-width:600px; margin:0 auto 14px; line-height:1.5;">"Courage to Know — জানার সাহসই পারে একটি জাতিকে বদলে দিতে।"</p>
+  <p style="color:var(--text-soft); font-size:0.85rem;">— আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল, আগরপুর</p>
+  <div style="margin-top:28px;">
+    <a href="admission.html" class="btn btn-primary"><i class="fas fa-pen-to-square"></i> ভর্তির আবেদন করুন</a>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+</body>
+</html>

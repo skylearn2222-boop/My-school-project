@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.faq-item {
+  background: white; border: 1px solid var(--border);
+  border-radius: 18px; margin-bottom: 12px; overflow: hidden;
+  transition: all 0.3s;
+}
+.faq-item:hover { box-shadow: var(--shadow-sm); }
+.faq-q {
+  padding: 20px 22px; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'Noto Serif Bengali', serif;
+  font-weight: 600; font-size: 0.97rem; color: var(--dark);
+  gap: 14px;
+}
+.faq-q i { color: var(--sky); transition: transform 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-q i { transform: rotate(180deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.faq-item.open .faq-a { max-height: 200px; }
+.faq-a-inner { padding: 0 22px 20px; color: var(--text-soft); font-size: 0.9rem; line-height: 1.75; border-top: 1px solid var(--border); padding-top: 16px; }
+</style>
+</head>
+<body>
+<div id="topbar-placeholder"></div>
+<div id="drawer-placeholder"></div>
+<div id="fab-placeholder"></div>
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag"><i class="fas fa-circle-question"></i> FAQ</div>
+    <h1>সচরাচর <em>জিজ্ঞাসিত</em><br>প্রশ্নসমূহ</h1>
+  </div>
+</div>
+<section class="section">
+  <div class="container" style="max-width:760px;">
+    <div class="reveal">
+      <div class="faq-item">
+        <div class="faq-q"><span>ভর্তির জন্য কোথায় যোগাযোগ করবো?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">সরাসরি স্কুলে আসুন অথবা 01720-244469 নম্বরে ফোন করুন। WhatsApp-এও যোগাযোগ করা যাবে।</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>কোন কোন শ্রেণিতে ভর্তি নেওয়া হয়?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">প্লে-গ্রুপ থেকে শুরু করে দশম শ্রেণি (SSC) পর্যন্ত সকল শ্রেণিতে ভর্তি নেওয়া হয়।</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>স্কুলে হোস্টেল সুবিধা আছে কি?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">হ্যাঁ, দূরবর্তী শিক্ষার্থীদের জন্য নিরাপদ আবাসিক হোস্টেল সুবিধা রয়েছে।</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>ভর্তি পরীক্ষা দিতে হবে কি?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">বিস্তারিত জানতে সরাসরি স্কুলে যোগাযোগ করুন। 📞 01720-244469</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>স্কুলটি কোথায় অবস্থিত?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">আগরপুর বাসস্ট্যান্ড, কুলিয়ারচর, কিশোরগঞ্জ। Google Map বাটনে ক্লিক করলে সরাসরি লোকেশনে নিয়ে যাবে।</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>অনলাইনে আবেদন করার পর কি করতে হবে?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-a"><div class="faq-a-inner">অনলাইনে আবেদন জমা দেওয়ার পর স্কুল কর্তৃপক্ষ আপনার দেওয়া নম্বরে যোগাযোগ করবেন এবং পরবর্তী পদক্ষেপ জানাবেন।</div></div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;" class="reveal">
+      <p style="color:var(--text-soft); margin-bottom:16px; font-size:0.9rem;">আরো প্রশ্ন আছে? সরাসরি যোগাযোগ করুন —</p>
+      <a href="tel:01720244469" class="btn btn-primary"><i class="fas fa-phone"></i> 01720-244469</a>
+    </div>
+  </div>
+</section>
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  }, 500);
+});
+</script>
+</body>
+</html>

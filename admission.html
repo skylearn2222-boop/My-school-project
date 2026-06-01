@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ভর্তি ফর্ম | আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.form-wrapper {
+  background: white; border: 1px solid var(--border);
+  border-radius: 32px; padding: 48px;
+  box-shadow: var(--shadow); max-width: 800px; margin: 0 auto;
+}
+.form-section-title {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1rem; font-weight: 700; color: var(--royal);
+  margin: 28px 0 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-full { grid-column: 1 / -1; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.78rem; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.5px; }
+.form-group input, .form-group select, .form-group textarea {
+  padding: 13px 16px;
+  border: 1.5px solid #e0eaf2;
+  border-radius: 14px;
+  font-family: 'Noto Serif Bengali', 'Sora', sans-serif;
+  font-size: 0.95rem; color: var(--dark);
+  background: #f8fbff; outline: none;
+  transition: all 0.25s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--sky);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(10,109,184,0.08);
+}
+.form-group textarea { resize: vertical; min-height: 90px; }
+.submit-btn {
+  width: 100%; padding: 16px;
+  background: linear-gradient(135deg, var(--deep), var(--sky));
+  color: white; border: none; border-radius: 16px;
+  font-size: 1rem; font-weight: 700; cursor: pointer;
+  font-family: 'Noto Serif Bengali', 'Sora', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  margin-top: 12px;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(10,109,184,0.35); }
+.submit-btn:disabled { opacity: 0.7; transform: none; }
+#formStatus { margin-top: 16px; text-align: center; font-weight: 500; min-height: 24px; font-size: 0.95rem; }
+
+.info-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; margin-bottom: 40px; }
+.info-card {
+  background: var(--pale); border: 1px solid var(--border);
+  border-radius: 18px; padding: 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.info-icon { font-size: 1.5rem; flex-shrink: 0; }
+.info-label { font-size: 0.72rem; color: var(--text-soft); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.info-val { font-size: 0.9rem; font-weight: 600; color: var(--dark); margin-top: 3px; }
+
+@media (max-width: 600px) {
+  .form-wrapper { padding: 24px 16px; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div id="topbar-placeholder"></div>
+<div id="drawer-placeholder"></div>
+<div id="fab-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag"><i class="fas fa-pen-to-square"></i> অনলাইন ভর্তি</div>
+    <h1><em>ভর্তির আবেদন</em> করুন<br>২০২৬ শিক্ষাবর্ষ</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div class="info-cards reveal">
+      <div class="info-card"><span class="info-icon">📍</span><div><div class="info-label">ঠিকানা</div><div class="info-val">আগরপুর বাসস্ট্যান্ড, কুলিয়ারচর, কিশোরগঞ্জ</div></div></div>
+      <div class="info-card"><span class="info-icon">📞</span><div><div class="info-label">ফোন</div><div class="info-val"><a href="tel:01720244469" style="color:var(--royal);text-decoration:none;">01720-244469</a></div></div></div>
+      <div class="info-card"><span class="info-icon">⚠️</span><div><div class="info-label">বিশেষ দ্রষ্টব্য</div><div class="info-val">আসন সীমিত — দ্রুত আবেদন করুন</div></div></div>
+    </div>
+
+    <div class="form-wrapper reveal">
+      <div style="text-align:center; margin-bottom:32px;">
+        <div class="sec-tag" style="justify-content:center;"><i class="fas fa-file-pen"></i> আবেদনপত্র</div>
+        <h2 class="sec-title">ভর্তি ফর্ম পূরণ করুন</h2>
+        <p style="color:var(--text-soft); font-size:0.88rem;">নিচের তথ্যগুলো সঠিকভাবে পূরণ করুন। আবেদন জমার পর স্কুল কর্তৃপক্ষ যোগাযোগ করবেন।</p>
+      </div>
+
+      <form id="admissionForm" action="https://formspree.io/f/mojrqlzg" method="POST">
+
+        <div class="form-section-title"><i class="fas fa-user"></i> শিক্ষার্থীর তথ্য</div>
+        <div class="form-grid">
+          <div class="form-group"><label>শিক্ষার্থীর নাম *</label><input type="text" name="শিক্ষার্থীর নাম" placeholder="পূর্ণ নাম লিখুন" required></div>
+          <div class="form-group"><label>জন্ম তারিখ</label><input type="date" name="জন্ম তারিখ"></div>
+          <div class="form-group"><label>ধর্ম *</label>
+            <select name="ধর্ম" required>
+              <option value="">নির্বাচন করুন</option>
+              <option>ইসলাম</option><option>হিন্দু</option><option>বৌদ্ধ</option><option>খ্রিস্টান</option>
+            </select>
+          </div>
+          <div class="form-group"><label>জাতীয়তা</label><input type="text" name="জাতীয়তা" value="বাংলাদেশী"></div>
+          <div class="form-group form-full"><label>কাঙ্ক্ষিত শ্রেণি *</label>
+            <select name="কাঙ্ক্ষিত শ্রেণি" required>
+              <option value="">শ্রেণি নির্বাচন করুন</option>
+              <option>প্লে-গ্রুপ</option><option>নার্সারি</option><option>কেজি</option>
+              <option>১ম শ্রেণি</option><option>২য় শ্রেণি</option><option>৩য় শ্রেণি</option>
+              <option>৪র্থ শ্রেণি</option><option>৫ম শ্রেণি</option><option>৬ষ্ঠ শ্রেণি</option>
+              <option>৭ম শ্রেণি</option><option>৮ম শ্রেণি</option><option>৯ম শ্রেণি</option>
+              <option>১০ম শ্রেণি (SSC)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-section-title"><i class="fas fa-users"></i> অভিভাবকের তথ্য</div>
+        <div class="form-grid">
+          <div class="form-group"><label>পিতার নাম *</label><input type="text" name="পিতার নাম" placeholder="পিতার পূর্ণ নাম" required></div>
+          <div class="form-group"><label>মাতার নাম *</label><input type="text" name="মাতার নাম" placeholder="মাতার পূর্ণ নাম" required></div>
+          <div class="form-group"><label>অভিভাবকের মোবাইল *</label><input type="tel" name="অভিভাবকের মোবাইল" placeholder="01XXXXXXXXX" required></div>
+          <div class="form-group"><label>মাতার মোবাইল</label><input type="tel" name="মাতার মোবাইল" placeholder="01XXXXXXXXX (ঐচ্ছিক)"></div>
+        </div>
+
+        <div class="form-section-title"><i class="fas fa-map-marker-alt"></i> ঠিকানা</div>
+        <div class="form-grid">
+          <div class="form-group form-full"><label>বর্তমান ঠিকানা *</label><input type="text" name="বর্তমান ঠিকানা" placeholder="গ্রাম, উপজেলা, জেলা" required></div>
+          <div class="form-group form-full"><label>স্থায়ী ঠিকানা *</label><input type="text" name="স্থায়ী ঠিকানা" placeholder="গ্রাম, উপজেলা, জেলা" required></div>
+        </div>
+
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <i class="fas fa-paper-plane"></i> ভর্তির আবেদন জমা দিন
+        </button>
+        <div id="formStatus"></div>
+        <p style="text-align:center; font-size:0.75rem; color:var(--text-soft); margin-top:12px;">আবেদন জমা দেওয়ার পর স্কুল কর্তৃপক্ষ দ্রুত আপনার সাথে যোগাযোগ করবেন।</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const form = document.getElementById('admissionForm');
+    const status = document.getElementById('formStatus');
+    const btn = document.getElementById('submitBtn');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      btn.disabled = true;
+      status.innerHTML = '<span style="color:var(--azure)"><i class="fas fa-spinner fa-spin"></i> জমা দেওয়া হচ্ছে...</span>';
+      fetch(form.action, { method:'POST', body: new FormData(form), headers:{ Accept:'application/json' } })
+        .then(r => {
+          if (r.ok) {
+            status.innerHTML = '<span style="color:green"><i class="fas fa-circle-check"></i> আবেদন সফলভাবে জমা হয়েছে! শীঘ্রই যোগাযোগ করা হবে।</span>';
+            form.reset();
+          } else {
+            status.innerHTML = '<span style="color:red"><i class="fas fa-triangle-exclamation"></i> সমস্যা হয়েছে। কল করুন: 01720-244469</span>';
+          }
+          btn.disabled = false;
+          setTimeout(() => status.innerHTML = '', 7000);
+        }).catch(() => {
+          status.innerHTML = '<span style="color:red">নেটওয়ার্ক সমস্যা। আবার চেষ্টা করুন।</span>';
+          btn.disabled = false;
+        });
+    });
+  }, 500);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-bn="আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল | হোম" data-en="Aftab Uddin Pre-Cadet School | Home">আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল | হোম</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(150deg, #061a0d 0%, #072b1a 45%, #0d4a2f 100%);
+  display: flex; align-items: center;
+  padding-top: 62px; position: relative; overflow: hidden;
+}
+.hero-orbs::before {
+  content: ''; position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(41,128,217,0.18) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.hero-orbs::after {
+  content: ''; position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(212,160,23,0.12) 0%, transparent 70%);
+  bottom: 0; left: -80px;
+  animation: orbFloat 10s ease-in-out infinite reverse;
+}
+@keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.05)} }
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto;
+  padding: 40px 20px 80px;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 48px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,200,66,0.15); border: 1px solid rgba(245,200,66,0.3);
+  color: var(--gold-light); padding: 6px 16px; border-radius: 50px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 22px;
+  animation: fadeUp 0.7s 0.1s both;
+}
+.hero-badge-dot { width:6px; height:6px; background:var(--gold-light); border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero h1 {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 900; color: white; line-height: 1.2;
+  margin-bottom: 18px; animation: fadeUp 0.7s 0.2s both;
+}
+.hero h1 em { font-style:normal; color: var(--gold-light); }
+.hero-sub { font-size:1rem; color:rgba(255,255,255,0.65); line-height:1.75; max-width:460px; margin-bottom:36px; animation:fadeUp 0.7s 0.3s both; }
+.hero-actions { display:flex; gap:14px; flex-wrap:wrap; animation:fadeUp 0.7s 0.4s both; }
+.hero-stats { display:flex; gap:0; margin-top:52px; border-top:1px solid rgba(255,255,255,0.1); padding-top:32px; animation:fadeUp 0.7s 0.5s both; }
+.hero-stat { flex:1; padding-right:28px; border-right:1px solid rgba(255,255,255,0.1); margin-right:28px; }
+.hero-stat:last-child { border-right:none; margin-right:0; padding-right:0; }
+.hero-stat-n { font-size:2.2rem; font-weight:800; color:white; line-height:1; }
+.hero-stat-n sup { font-size:1rem; color:var(--gold-light); }
+.hero-stat-l { font-size:0.75rem; color:rgba(255,255,255,0.5); margin-top:5px; }
+.hero-card {
+  background:rgba(255,255,255,0.07); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.14); border-radius:28px; padding:32px; animation:fadeUp 0.7s 0.3s both;
+}
+.hero-logo-wrap { width:100px; height:100px; background:white; border-radius:22px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; box-shadow:0 12px 32px rgba(0,0,0,0.2); overflow:hidden; }
+.hero-logo-wrap img { width:85%; height:85%; object-fit:contain; }
+.hero-card h3 { font-family:'Noto Serif Bengali',serif; color:white; font-size:1rem; font-weight:700; text-align:center; margin-bottom:20px; }
+.class-chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:24px; }
+.chip { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.88); padding:5px 13px; border-radius:20px; font-size:0.78rem; font-weight:500; }
+.hero-admit-btn { display:block; text-align:center; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--dark); font-weight:700; font-size:0.95rem; padding:14px; border-radius:16px; text-decoration:none; transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.hero-admit-btn:hover { transform:translateY(-3px); box-shadow:0 12px 28px rgba(212,160,23,0.4); }
+.hero-contact-strip { margin-top:14px; text-align:center; color:rgba(255,255,255,0.5); font-size:0.8rem; }
+.hero-contact-strip a { color:var(--gold-light); text-decoration:none; font-weight:600; }
+.motivation-strip { background:linear-gradient(90deg,var(--royal),var(--sky),var(--royal)); padding:18px 0; text-align:center; overflow:hidden; }
+.motivation-strip p { font-family:'Noto Serif Bengali',serif; color:white; font-size:1.05rem; font-weight:600; letter-spacing:0.3px; animation:marqueeSlide 20s linear infinite; white-space:nowrap; }
+@keyframes marqueeSlide { 0%{transform:translateX(100vw)} 100%{transform:translateX(-100%)} }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; }
+.principal-card { background:white; border:1px solid var(--border); border-radius:22px; padding:28px; box-shadow:var(--shadow-sm); margin-bottom:20px; }
+body.dark .principal-card { background:#152010; }
+.principal-row { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.p-avatar { width:56px; height:56px; background:linear-gradient(135deg,var(--deep),var(--sky)); border-radius:14px; display:flex; align-items:center; justify-content:center; color:white; font-size:1.4rem; }
+.p-name { font-family:'Noto Serif Bengali',serif; font-size:1rem; font-weight:700; color:var(--dark); }
+.p-role { font-size:0.75rem; color:var(--text-soft); margin-top:2px; }
+.p-quote { font-size:0.87rem; color:var(--text-soft); line-height:1.75; font-style:italic; }
+.achievement-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.ach-card { background:white; border:1px solid var(--border); border-radius:16px; padding:14px 16px; display:flex; align-items:center; gap:12px; box-shadow:var(--shadow-sm); }
+body.dark .ach-card { background:#152010; }
+.ach-icon { font-size:1.4rem; }
+.ach-label { font-size:0.72rem; color:var(--text-soft); }
+.ach-val { font-size:0.88rem; font-weight:700; color:var(--dark); }
+.features-bg { background:linear-gradient(150deg,#061a0d,#0d4a2f); }
+.features-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.feat-card { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:24px; transition:all 0.3s; }
+.feat-card:hover { background:rgba(255,255,255,0.12); transform:translateY(-4px); }
+.feat-icon { font-size:1.8rem; margin-bottom:12px; }
+.feat-title { font-size:0.9rem; font-weight:700; color:white; margin-bottom:6px; }
+.feat-desc { font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.65; }
+.classes-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:14px; margin-top:36px; }
+.class-card { background:white; border:1px solid var(--border); border-radius:18px; padding:20px; text-align:center; box-shadow:var(--shadow-sm); transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+body.dark .class-card { background:#152010; }
+.class-card:hover { transform:translateY(-6px); box-shadow:var(--shadow); }
+.cls-emoji { font-size:1.8rem; display:block; margin-bottom:8px; }
+.cls-name { font-size:0.9rem; font-weight:700; color:var(--dark); margin-bottom:4px; }
+.cls-sub { font-size:0.74rem; color:var(--text-soft); }
+.quote-section { background:linear-gradient(135deg,var(--deep),var(--forest)); padding:80px 20px; text-align:center; }
+.big-quote { font-family:'Noto Serif Bengali',serif; font-size:clamp(1.2rem,3vw,1.8rem); color:white; font-weight:700; max-width:680px; margin:0 auto 16px; line-height:1.55; }
+.big-quote em { color:var(--gold-light); font-style:normal; }
+.quote-attr { font-size:0.82rem; color:rgba(255,255,255,0.45); }
+.cta-section { background:linear-gradient(135deg,var(--gold),#c47d0a); padding:80px 20px; text-align:center; }
+.cta-section h2 { font-family:'Noto Serif Bengali',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--deep); font-weight:800; margin-bottom:12px; }
+.cta-section p { font-size:0.95rem; color:rgba(13,26,8,0.7); margin-bottom:32px; }
+.cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+@media(max-width:768px) {
+  .hero-inner { grid-template-columns:1fr; }
+  .hero-card { display:none; }
+  .about-grid { grid-template-columns:1fr; }
+  .achievement-row { grid-template-columns:1fr 1fr; }
+  .hero-stats { flex-wrap:wrap; gap:20px; }
+  .hero-stat { border-right:none; margin-right:0; flex:0 0 45%; }
+  .classes-grid { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+<div id="topbar-placeholder"></div>
+<div id="drawer-placeholder"></div>
+<div id="fab-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orbs"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span data-bn="প্রতিষ্ঠাকাল ২০০১ · কুলিয়ারচর, কিশোরগঞ্জ" data-en="Est. 2001 · Kuliarchar, Kishoreganj">প্রতিষ্ঠাকাল ২০০১ · কুলিয়ারচর, কিশোরগঞ্জ</span>
+      </div>
+      <h1 data-bn="আফতাবউদ্দিন<br><em>প্রি-ক্যাডেট স্কুল</em>" data-en="Aftab Uddin<br><em>Pre-Cadet School</em>">আফতাবউদ্দিন<br><em>প্রি-ক্যাডেট স্কুল</em></h1>
+      <p class="hero-sub" data-bn="শৃঙ্খলা, জ্ঞান ও নৈতিকতার অনন্য সমন্বয়ে গড়ে উঠছে আগামীর নেতৃত্ব।<br>Courage to Know." data-en="Building tomorrow's leaders through discipline, knowledge & integrity.<br>Courage to Know.">শৃঙ্খলা, জ্ঞান ও নৈতিকতার অনন্য সমন্বয়ে গড়ে উঠছে আগামীর নেতৃত্ব।<br>Courage to Know.</p>
+      <div class="hero-actions">
+        <a href="admission.html" class="btn btn-gold"><i class="fas fa-pen-to-square"></i> <span data-bn="এখনই ভর্তি হোন" data-en="Enroll Now">এখনই ভর্তি হোন</span></a>
+        <a href="history.html" class="btn btn-ghost" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.08)"><i class="fas fa-landmark"></i> <span data-bn="ইতিহাস জানুন" data-en="Our History">ইতিহাস জানুন</span></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-n">১০০০<sup>+</sup></div>
+          <div class="hero-stat-l" data-bn="সফল শিক্ষার্থী" data-en="Successful Students">সফল শিক্ষার্থী</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">৩০<sup>+</sup></div>
+          <div class="hero-stat-l" data-bn="দক্ষ শিক্ষক" data-en="Expert Teachers">দক্ষ শিক্ষক</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">২৫<sup>+</sup></div>
+          <div class="hero-stat-l" data-bn="বছরের অভিজ্ঞতা" data-en="Years Experience">বছরের অভিজ্ঞতা</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-logo-wrap">
+        <img src="logo.webp" alt="School Logo" onerror="this.parentElement.innerHTML='<span style=\'font-size:2rem\'>🏫</span>'">
+      </div>
+      <h3 data-bn="🎉 ২০২৬ শিক্ষাবর্ষে ভর্তি চলছে!" data-en="🎉 Admission Open for 2026!">🎉 ২০২৬ শিক্ষাবর্ষে ভর্তি চলছে!</h3>
+      <div class="class-chips">
+        <span class="chip" data-bn="👶 প্লে-গ্রুপ" data-en="👶 Play Group">👶 প্লে-গ্রুপ</span>
+        <span class="chip" data-bn="🧒 নার্সারি" data-en="🧒 Nursery">🧒 নার্সারি</span>
+        <span class="chip" data-bn="📖 কেজি" data-en="📖 KG">📖 কেজি</span>
+        <span class="chip" data-bn="✏️ ১ম–৫ম" data-en="✏️ Class 1–5">✏️ ১ম–৫ম</span>
+        <span class="chip" data-bn="📐 ৬ষ্ঠ–৮ম" data-en="📐 Class 6–8">📐 ৬ষ্ঠ–৮ম</span>
+        <span class="chip" data-bn="🎓 ৯ম–SSC" data-en="🎓 Class 9–SSC">🎓 ৯ম–SSC</span>
+      </div>
+      <a href="admission.html" class="hero-admit-btn" data-bn="ভর্তি ফর্ম পূরণ করুন →" data-en="Fill Admission Form →">ভর্তি ফর্ম পূরণ করুন →</a>
+      <div class="hero-contact-strip">📞 <a href="tel:01720244469">01720-244469</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTIVATION TICKER -->
+<div class="motivation-strip">
+  <p data-bn="🌟 &quot;শিক্ষাই জাতির মেরুদণ্ড&quot; — আজই ভর্তি নিশ্চিত করুন &nbsp;&nbsp;&nbsp; 📚 Courage to Know &nbsp;&nbsp;&nbsp; 🏆 PSC-তে উপজেলায় প্রথম &nbsp;&nbsp;&nbsp; ⭐ SSC-তে ৬ জন A+ &nbsp;&nbsp;&nbsp; 🌿 আলোর পথে এগিয়ে চলো"
+     data-en="🌟 &quot;Education is the backbone of a nation&quot; — Enroll Today &nbsp;&nbsp;&nbsp; 📚 Courage to Know &nbsp;&nbsp;&nbsp; 🏆 1st in Upazila at PSC &nbsp;&nbsp;&nbsp; ⭐ 6 A+ at SSC &nbsp;&nbsp;&nbsp; 🌿 Walk the Path of Light">
+    🌟 "শিক্ষাই জাতির মেরুদণ্ড" — আজই ভর্তি নিশ্চিত করুন &nbsp;&nbsp;&nbsp; 📚 Courage to Know &nbsp;&nbsp;&nbsp; 🏆 PSC-তে উপজেলায় প্রথম &nbsp;&nbsp;&nbsp; ⭐ SSC-তে ৬ জন A+ &nbsp;&nbsp;&nbsp; 🌿 আলোর পথে এগিয়ে চলো
+  </p>
+</div>
+
+<!-- ABOUT -->
+<section class="section" style="background:var(--pale);">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left reveal left">
+        <div class="principal-card">
+          <div class="principal-row">
+            <div class="p-avatar"><i class="fas fa-user-tie"></i></div>
+            <div>
+              <div class="p-name">আতাউর রহমান খান</div>
+              <div class="p-role" data-bn="প্রধান শিক্ষক (Principal)" data-en="Headmaster (Principal)">প্রধান শিক্ষক (Principal)</div>
+            </div>
+          </div>
+          <p class="p-quote" data-bn="&quot;শুধু পাঠ্যবই নয়, এখানে গড়ে ওঠে দেশপ্রেম ও নেতৃত্বের গুণ। আমাদের লক্ষ্য প্রতিটি শিক্ষার্থীকে আত্মনির্ভর ও সুনাগরিক হিসেবে গড়ে তোলা।&quot;" data-en="&quot;Beyond textbooks, we build patriotism and leadership. Our mission is to shape every student into a self-reliant and responsible citizen.&quot;">"শুধু পাঠ্যবই নয়, এখানে গড়ে ওঠে দেশপ্রেম ও নেতৃত্বের গুণ। আমাদের লক্ষ্য প্রতিটি শিক্ষার্থীকে আত্মনির্ভর ও সুনাগরিক হিসেবে গড়ে তোলা।"</p>
+        </div>
+        <div class="achievement-row">
+          <div class="ach-card"><span class="ach-icon">🏆</span><div><div class="ach-label">PSC 2012</div><div class="ach-val" data-bn="উপজেলায় ১ম" data-en="1st in Upazila">উপজেলায় ১ম</div></div></div>
+          <div class="ach-card"><span class="ach-icon">⭐</span><div><div class="ach-label">SSC 2024</div><div class="ach-val" data-bn="৬ জন A+" data-en="6 Students A+">৬ জন A+</div></div></div>
+          <div class="ach-card"><span class="ach-icon">👨‍🎓</span><div><div class="ach-label" data-bn="মোট শিক্ষার্থী" data-en="Total Students">মোট শিক্ষার্থী</div><div class="ach-val">1000+</div></div></div>
+          <div class="ach-card"><span class="ach-icon">📅</span><div><div class="ach-label" data-bn="প্রতিষ্ঠাকাল" data-en="Established">প্রতিষ্ঠাকাল</div><div class="ach-val" data-bn="২০০১ সাল" data-en="Year 2001">২০০১ সাল</div></div></div>
+        </div>
+      </div>
+      <div class="about-right reveal right">
+        <div class="sec-tag"><i class="fas fa-school"></i> <span data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</span></div>
+        <h2 class="sec-title" data-bn="শিক্ষার আলোয় আলোকিত<br>দীর্ঘ ২৫ বছর" data-en="Illuminated by Education<br>For Over 25 Years">শিক্ষার আলোয় আলোকিত<br>দীর্ঘ ২৫ বছর</h2>
+        <p class="sec-desc" style="margin-bottom:20px;" data-bn="আগরপুর বাসস্ট্যান্ড, কুলিয়ারচর, কিশোরগঞ্জ-এ অবস্থিত এই স্কুল দীর্ঘ ২৫ বছরেরও বেশি সময় ধরে শিক্ষার আলো ছড়িয়ে যাচ্ছে।" data-en="Located at Agorpur Busstand, Kuliarchar, Kishoreganj, this school has been spreading the light of education for over 25 years.">আগরপুর বাসস্ট্যান্ড, কুলিয়ারচর, কিশোরগঞ্জ-এ অবস্থিত এই স্কুল দীর্ঘ ২৫ বছরেরও বেশি সময় ধরে শিক্ষার আলো ছড়িয়ে যাচ্ছে।</p>
+        <p class="sec-desc" style="margin-bottom:28px;" data-bn="ক্যাডেট-স্টাইলের শৃঙ্খলাবদ্ধ পাঠদানে প্রতিটি শিশুকে আত্মনির্ভর ও দেশপ্রেমিক নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।" data-en="Our goal is to nurture every child into a self-reliant and patriotic citizen through cadet-style disciplined teaching.">ক্যাডেট-স্টাইলের শৃঙ্খলাবদ্ধ পাঠদানে প্রতিটি শিশুকে আত্মনির্ভর ও দেশপ্রেমিক নাগরিক হিসেবে গড়ে তোলাই আমাদের লক্ষ্য।</p>
+        <a href="history.html" class="btn btn-primary"><i class="fas fa-landmark"></i> <span data-bn="সম্পূর্ণ ইতিহাস পড়ুন" data-en="Read Full History">সম্পূর্ণ ইতিহাস পড়ুন</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-bg">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:44px;" class="reveal">
+      <div class="sec-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);">⭐ <span data-bn="সুবিধাসমূহ" data-en="Our Facilities">সুবিধাসমূহ</span></div>
+      <h2 class="sec-title" style="color:white;" data-bn="কেন আমাদের বেছে নেবেন?" data-en="Why Choose Us?">কেন আমাদের বেছে নেবেন?</h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,0.55);margin:0 auto;max-width:480px;" data-bn="আধুনিক শিক্ষার সব সুবিধা, নিরাপদ পরিবেশ এবং অভিজ্ঞ শিক্ষকমণ্ডলী।" data-en="All modern educational facilities, safe environment and experienced faculty.">আধুনিক শিক্ষার সব সুবিধা, নিরাপদ পরিবেশ এবং অভিজ্ঞ শিক্ষকমণ্ডলী।</p>
+    </div>
+    <div class="features-grid" data-stagger>
+      <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title" data-bn="CCTV সুরক্ষিত ক্যাম্পাস" data-en="CCTV Secured Campus">CCTV সুরক্ষিত ক্যাম্পাস</div><div class="feat-desc" data-bn="সার্বক্ষণিক নজরদারিতে শিশুর নিরাপত্তা নিশ্চিত।" data-en="Child safety ensured with round-the-clock surveillance.">সার্বক্ষণিক নজরদারিতে শিশুর নিরাপত্তা নিশ্চিত।</div></div>
+      <div class="feat-card"><div class="feat-icon">📺</div><div class="feat-title" data-bn="স্মার্ট ক্লাসরুম" data-en="Smart Classroom">স্মার্ট ক্লাসরুম</div><div class="feat-desc" data-bn="ডিজিটাল বোর্ড ও মাল্টিমিডিয়া প্রজেক্টরে আধুনিক পাঠদান।" data-en="Modern teaching with digital boards and multimedia projectors.">ডিজিটাল বোর্ড ও মাল্টিমিডিয়া প্রজেক্টরে আধুনিক পাঠদান।</div></div>
+      <div class="feat-card"><div class="feat-icon">🕌</div><div class="feat-title" data-bn="ধর্মীয় শিক্ষা" data-en="Religious Education">ধর্মীয় শিক্ষা</div><div class="feat-desc" data-bn="ইসলামিক মূল্যবোধ ও নৈতিকতায় আদর্শ নাগরিক গঠন।" data-en="Building ideal citizens through Islamic values and ethics.">ইসলামিক মূল্যবোধ ও নৈতিকতায় আদর্শ নাগরিক গঠন।</div></div>
+      <div class="feat-card"><div class="feat-icon">🏠</div><div class="feat-title" data-bn="আবাসিক হোস্টেল" data-en="Residential Hostel">আবাসিক হোস্টেল</div><div class="feat-desc" data-bn="দূরবর্তী শিক্ষার্থীদের জন্য নিরাপদ আবাসনের ব্যবস্থা।" data-en="Safe accommodation available for students from distant areas.">দূরবর্তী শিক্ষার্থীদের জন্য নিরাপদ আবাসনের ব্যবস্থা।</div></div>
+      <div class="feat-card"><div class="feat-icon">⚽</div><div class="feat-title" data-bn="খেলাধুলা ও সংস্কৃতি" data-en="Sports & Culture">খেলাধুলা ও সংস্কৃতি</div><div class="feat-desc" data-bn="শারীরিক ও মানসিক বিকাশে বিভিন্ন কার্যক্রমের আয়োজন।" data-en="Various activities organized for physical and mental development.">শারীরিক ও মানসিক বিকাশে বিভিন্ন কার্যক্রমের আয়োজন।</div></div>
+      <div class="feat-card"><div class="feat-icon">🎯</div><div class="feat-title" data-bn="ক্যারিয়ার গাইডেন্স" data-en="Career Guidance">ক্যারিয়ার গাইডেন্স</div><div class="feat-desc" data-bn="উচ্চশিক্ষা ও ভবিষ্যৎ পরিকল্পনায় বিশেষজ্ঞ পরামর্শ।" data-en="Expert guidance for higher education and future planning.">উচ্চশিক্ষা ও ভবিষ্যৎ পরিকল্পনায় বিশেষজ্ঞ পরামর্শ।</div></div>
+      <div class="feat-card"><div class="feat-icon">📝</div><div class="feat-title" data-bn="নিয়মিত মূল্যায়ন" data-en="Regular Assessment">নিয়মিত মূল্যায়ন</div><div class="feat-desc" data-bn="মাসিক পরীক্ষায় প্রতিটি শিক্ষার্থীর অগ্রগতি পর্যবেক্ষণ।" data-en="Monthly exams to monitor each student's progress.">মাসিক পরীক্ষায় প্রতিটি শিক্ষার্থীর অগ্রগতি পর্যবেক্ষণ।</div></div>
+      <div class="feat-card"><div class="feat-icon">✈️</div><div class="feat-title" data-bn="বার্ষিক শিক্ষা সফর" data-en="Annual Educational Tour">বার্ষিক শিক্ষা সফর</div><div class="feat-desc" data-bn="শিক্ষামূলক ভ্রমণে বাস্তব জ্ঞান অর্জনের সুযোগ।" data-en="Opportunity to gain practical knowledge through educational trips.">শিক্ষামূলক ভ্রমণে বাস্তব জ্ঞান অর্জনের সুযোগ।</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <div class="sec-tag"><i class="fas fa-graduation-cap"></i> <span data-bn="শ্রেণিসমূহ" data-en="Classes">শ্রেণিসমূহ</span></div>
+      <h2 class="sec-title" data-bn="প্লে-গ্রুপ থেকে SSC পর্যন্ত" data-en="Play Group to SSC">প্লে-গ্রুপ থেকে SSC পর্যন্ত</h2>
+      <p class="sec-desc" style="max-width:440px;margin:0 auto;" data-bn="সকল শ্রেণিতে ভর্তির সুযোগ — সীমিত আসন, এখনই আবেদন করুন।" data-en="Admission open for all classes — Limited seats, apply now.">সকল শ্রেণিতে ভর্তির সুযোগ — সীমিত আসন, এখনই আবেদন করুন।</p>
+    </div>
+    <div class="classes-grid" data-stagger>
+      <div class="class-card"><span class="cls-emoji">👶</span><div class="cls-name" data-bn="প্লে-গ্রুপ" data-en="Play Group">প্লে-গ্রুপ</div><div class="cls-sub" data-bn="বয়স ৩–৪ বছর" data-en="Age 3–4 years">বয়স ৩–৪ বছর</div></div>
+      <div class="class-card"><span class="cls-emoji">🧒</span><div class="cls-name" data-bn="নার্সারি" data-en="Nursery">নার্সারি</div><div class="cls-sub" data-bn="বয়স ৪–৫ বছর" data-en="Age 4–5 years">বয়স ৪–৫ বছর</div></div>
+      <div class="class-card"><span class="cls-emoji">📖</span><div class="cls-name" data-bn="কেজি" data-en="KG">কেজি</div><div class="cls-sub" data-bn="বয়স ৫–৬ বছর" data-en="Age 5–6 years">বয়স ৫–৬ বছর</div></div>
+      <div class="class-card"><span class="cls-emoji">✏️</span><div class="cls-name" data-bn="১ম – ৫ম শ্রেণি" data-en="Class 1 – 5">১ম – ৫ম শ্রেণি</div><div class="cls-sub" data-bn="প্রাথমিক স্তর" data-en="Primary Level">প্রাথমিক স্তর</div></div>
+      <div class="class-card"><span class="cls-emoji">📐</span><div class="cls-name" data-bn="৬ষ্ঠ – ৮ম শ্রেণি" data-en="Class 6 – 8">৬ষ্ঠ – ৮ম শ্রেণি</div><div class="cls-sub" data-bn="মাধ্যমিক স্তর" data-en="Secondary Level">মাধ্যমিক স্তর</div></div>
+      <div class="class-card"><span class="cls-emoji">🎓</span><div class="cls-name" data-bn="৯ম – SSC" data-en="Class 9 – SSC">৯ম – SSC</div><div class="cls-sub" data-bn="উচ্চ মাধ্যমিক" data-en="Higher Secondary">উচ্চ মাধ্যমিক</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG QUOTE -->
+<section class="quote-section reveal">
+  <p style="font-size:2.5rem;margin-bottom:10px;">💡</p>
+  <p class="big-quote" data-bn="&quot;জ্ঞানই শক্তি — আর সেই শক্তির বীজ বপন হয় <em>এখানে।</em>&quot;" data-en="&quot;Knowledge is power — and the seed of that power is sown <em>right here.</em>&quot;">"জ্ঞানই শক্তি — আর সেই শক্তির বীজ বপন হয় <em>এখানে।</em>"</p>
+  <p class="quote-attr" data-bn="— আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল, আগরপুর" data-en="— Aftab Uddin Pre-Cadet School, Agorpur">— আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল, আগরপুর</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="reveal">
+    <h2 data-bn="🎉 ২০২৬ শিক্ষাবর্ষে ভর্তি চলছে!" data-en="🎉 Admission Open for 2026!">🎉 ২০২৬ শিক্ষাবর্ষে ভর্তি চলছে!</h2>
+    <p data-bn="আসন সংখ্যা সীমিত — দেরি না করে আজই আবেদন করুন।" data-en="Seats are limited — don't delay, apply today.">আসন সংখ্যা সীমিত — দেরি না করে আজই আবেদন করুন।</p>
+    <div class="cta-btns">
+      <a href="admission.html" class="btn btn-gold"><i class="fas fa-pen-to-square"></i> <span data-bn="ভর্তি ফর্ম পূরণ করুন" data-en="Fill Admission Form">ভর্তি ফর্ম পূরণ করুন</span></a>
+      <a href="tel:01720244469" class="btn" style="background:rgba(255,255,255,0.12);color:white;border:1px solid rgba(255,255,255,0.2)"><i class="fas fa-phone"></i> 01720-244469</a>
+    </div>
+  </div>
+</section>
+
+<!-- RATINGS SECTION -->
+<section class="section" style="background:var(--pale);padding:60px 20px;">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:40px;">
+      <div class="sec-tag" style="justify-content:center;margin-bottom:14px;">
+        <i class="fas fa-star"></i> অভিভাবকদের মতামত
+      </div>
+      <h2 class="sec-title">সবাই আমাদের ভালোবাসে ❤️</h2>
+      <p class="sec-desc" style="max-width:440px;margin:0 auto;">হাজারো অভিভাবক ও শিক্ষার্থীর আস্থার প্রতিষ্ঠান।</p>
+    </div>
+
+    <!-- Overall Rating Display -->
+    <div class="reveal" style="text-align:center;margin-bottom:36px;">
+      <div id="avgRatingNum" style="font-size:4.5rem;font-weight:900;color:var(--dark);line-height:1;">4.9</div>
+      <div class="star-row" style="justify-content:center;margin:10px 0;">
+        <span class="star-anim" style="animation-delay:0.1s">⭐</span>
+        <span class="star-anim" style="animation-delay:0.2s">⭐</span>
+        <span class="star-anim" style="animation-delay:0.3s">⭐</span>
+        <span class="star-anim" style="animation-delay:0.4s">⭐</span>
+        <span class="star-anim" style="animation-delay:0.5s">⭐</span>
+      </div>
+      <div id="ratingCountText" style="font-size:0.85rem;color:var(--text-soft);">১০০০+ অভিভাবকের রেটিং</div>
+    </div>
+
+    <!-- Rating Bars -->
+    <div class="rating-bars reveal" style="max-width:380px;margin:0 auto 48px;">
+      <div class="rating-bar-row">
+        <span class="rb-label">৫ ⭐</span>
+        <div class="rb-track"><div class="rb-fill" data-width="88%" style="background:linear-gradient(90deg,#f59e0b,#fbbf24)"></div></div>
+        <span class="rb-pct">88%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rb-label">৪ ⭐</span>
+        <div class="rb-track"><div class="rb-fill" data-width="8%" style="background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
+        <span class="rb-pct">8%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rb-label">৩ ⭐</span>
+        <div class="rb-track"><div class="rb-fill" data-width="3%" style="background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div></div>
+        <span class="rb-pct">3%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rb-label">২ ⭐</span>
+        <div class="rb-track"><div class="rb-fill" data-width="1%" style="background:linear-gradient(90deg,#f97316,#fb923c)"></div></div>
+        <span class="rb-pct">1%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rb-label">১ ⭐</span>
+        <div class="rb-track"><div class="rb-fill" data-width="0.5%" style="background:linear-gradient(90deg,#ef4444,#f87171)"></div></div>
+        <span class="rb-pct">0.5%</span>
+      </div>
+    </div>
+
+    <!-- Interactive Rating Box -->
+    <div class="user-rating-box reveal" id="ratingBox">
+      <p class="urb-title">আপনি কত স্টার দেবেন?</p>
+      <div class="urb-stars" id="urbStars">
+        <span class="urb-star" data-val="1">★</span>
+        <span class="urb-star" data-val="2">★</span>
+        <span class="urb-star" data-val="3">★</span>
+        <span class="urb-star" data-val="4">★</span>
+        <span class="urb-star" data-val="5">★</span>
+      </div>
+      <div class="urb-label" id="urbLabel">স্টারে ক্লিক করুন</div>
+      <button class="urb-submit" id="urbSubmit" onclick="submitRating()" disabled>
+        <i class="fas fa-paper-plane"></i> রেটিং দিন
+      </button>
+      <div class="urb-thanks" id="urbThanks" style="display:none;">
+        <span style="font-size:2rem;">🎉</span>
+        <div style="font-weight:700;color:var(--forest);margin-top:6px;">ধন্যবাদ আপনার রেটিংয়ের জন্য!</div>
+      </div>
+    </div>
+
+    <!-- Review Cards -->
+    <div class="review-grid" style="margin-top:48px;" data-stagger>
+      <div class="review-card reveal">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"আমার ছেলে এই স্কুলে ভর্তির পর থেকে পড়াশোনায় অনেক মনোযোগী হয়েছে। শিক্ষকরা অত্যন্ত যত্নশীল।"</p>
+        <div class="review-author">
+          <div class="review-avatar">র</div>
+          <div><div class="review-name">রহিমা বেগম</div><div class="review-role">৫ম শ্রেণির অভিভাবক</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"SSC তে A+ পেয়েছে আমার মেয়ে। এই স্কুলের শিক্ষার মান সত্যিই অসাধারণ। সবাইকে recommend করি।"</p>
+        <div class="review-author">
+          <div class="review-avatar">ক</div>
+          <div><div class="review-name">করিম সাহেব</div><div class="review-role">SSC ২০২৪ অভিভাবক</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">"ক্যাডেট স্টাইলের শৃঙ্খলা আমার ছেলেকে একজন দায়িত্বশীল মানুষ হিসেবে গড়ে তুলছে।"</p>
+        <div class="review-author">
+          <div class="review-avatar">আ</div>
+          <div><div class="review-name">আবদুল্লাহ মিয়া</div><div class="review-role">৮ম শ্রেণির অভিভাবক</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CARDS SECTION -->
+<section style="background:linear-gradient(135deg,#061a0d,#0d4a2f);padding:48px 20px;text-align:center;">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:32px;">
+      <div class="sec-tag" style="justify-content:center;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);margin-bottom:14px;">
+        <i class="fas fa-address-card"></i> যোগাযোগ করুন
+      </div>
+      <h2 style="font-family:'Noto Serif Bengali',serif;color:white;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;">
+        আমাদের সাথে সংযুক্ত থাকুন
+      </h2>
+    </div>
+
+    <div class="contact-cards reveal">
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/8801992355506" target="_blank" class="contact-card">
+        <div class="cc-icon" style="background:#25D366;">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="cc-title">WhatsApp</div>
+        <div class="cc-sub">01992-355506</div>
+        <div class="cc-btn" style="background:#25D366;">মেসেজ করুন</div>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/profile.php?id=61585537392687" target="_blank" class="contact-card">
+        <div class="cc-icon" style="background:#1877F2;">
+          <i class="fab fa-facebook-f"></i>
+        </div>
+        <div class="cc-title">Facebook</div>
+        <div class="cc-sub">Official Page</div>
+        <div class="cc-btn" style="background:#1877F2;">Follow করুন</div>
+      </a>
+
+      <!-- Google Maps -->
+      <a href="https://maps.app.goo.gl/5AUY9i5odK9wUk1q8" target="_blank" class="contact-card">
+        <div class="cc-icon" style="background:#EA4335;">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="cc-title">Google Maps</div>
+        <div class="cc-sub">আগরপুর, কুলিয়ারচর</div>
+        <div class="cc-btn" style="background:#EA4335;">রাস্তা দেখুন</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+@media(max-width: 480px) {
+  .contact-cards { grid-template-columns: 1fr; max-width: 280px; }
+}
+.contact-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px; padding: 24px 16px;
+  text-decoration: none; display: flex;
+  flex-direction: column; align-items: center; gap: 10px;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+.contact-card:hover {
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.cc-icon {
+  width: 56px; height: 56px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.cc-title {
+  font-size: 0.92rem; font-weight: 800;
+  color: white; font-family: 'Sora', sans-serif;
+}
+.cc-sub {
+  font-size: 0.72rem; color: rgba(255,255,255,0.55);
+  text-align: center; line-height: 1.4;
+}
+.cc-btn {
+  margin-top: 4px; padding: 7px 16px;
+  border-radius: 50px; color: white;
+  font-size: 0.75rem; font-weight: 700;
+  font-family: 'Sora', 'Noto Serif Bengali', sans-serif;
+  opacity: 0.9;
+}
+</style>
+
+<style>
+.star-row { display:flex; gap:6px; font-size:1.8rem; }
+.star-anim { display:inline-block; animation: starPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+@keyframes starPop {
+  from { opacity:0; transform:scale(0) rotate(-30deg); }
+  to   { opacity:1; transform:scale(1) rotate(0deg); }
+}
+.rating-bars { display:flex; flex-direction:column; gap:10px; }
+.rating-bar-row { display:flex; align-items:center; gap:10px; }
+.rb-label { font-size:0.78rem; color:var(--text-soft); width:36px; flex-shrink:0; }
+.rb-track { flex:1; height:10px; background:var(--border); border-radius:99px; overflow:hidden; }
+.rb-fill { height:100%; width:0%; border-radius:99px; transition: width 1.4s cubic-bezier(0.4,0,0.2,1); }
+.rb-pct { font-size:0.75rem; color:var(--text-soft); width:34px; text-align:right; flex-shrink:0; }
+
+/* Interactive Rating Box */
+.user-rating-box {
+  max-width:340px; margin:0 auto;
+  background:white; border:1px solid var(--border);
+  border-radius:24px; padding:28px 24px;
+  text-align:center; box-shadow:var(--shadow-sm);
+}
+body.dark .user-rating-box { background:#152010; }
+.urb-title { font-family:'Noto Serif Bengali',serif; font-size:1rem; font-weight:700; color:var(--dark); margin-bottom:18px; }
+.urb-stars { display:flex; justify-content:center; gap:10px; margin-bottom:12px; }
+.urb-star {
+  font-size:2.4rem; cursor:pointer; color:#d1d5db;
+  transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  line-height:1; user-select:none;
+}
+.urb-star.hovered, .urb-star.selected { color:#f59e0b; transform:scale(1.25); filter:drop-shadow(0 0 8px rgba(245,158,11,0.6)); }
+.urb-label { font-size:0.82rem; color:var(--text-soft); margin-bottom:16px; min-height:20px; }
+.urb-submit {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 28px; border-radius:14px;
+  background:linear-gradient(135deg,var(--forest),var(--emerald));
+  color:white; border:none; font-size:0.9rem; font-weight:700;
+  cursor:pointer; font-family:'Sora','Noto Serif Bengali',sans-serif;
+  transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  opacity:0.4; pointer-events:none;
+}
+.urb-submit.active { opacity:1; pointer-events:all; }
+.urb-submit.active:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(13,74,47,0.35); }
+.urb-thanks { text-align:center; padding:8px 0; }
+
+/* Review Cards */
+.review-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+.review-card { background:white; border:1px solid var(--border); border-radius:22px; padding:22px; box-shadow:var(--shadow-sm); transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+body.dark .review-card { background:#152010; }
+.review-card:hover { transform:translateY(-6px); box-shadow:var(--shadow); }
+.review-stars { font-size:1rem; margin-bottom:12px; letter-spacing:2px; }
+.review-text { font-size:0.85rem; color:var(--text-soft); line-height:1.75; margin-bottom:16px; font-family:'Noto Serif Bengali',serif; font-style:italic; }
+.review-author { display:flex; align-items:center; gap:10px; }
+.review-avatar { width:36px; height:36px; border-radius:10px; flex-shrink:0; background:linear-gradient(135deg,var(--forest),var(--emerald)); color:white; display:flex; align-items:center; justify-content:center; font-size:0.9rem; font-weight:700; }
+.review-name { font-size:0.85rem; font-weight:700; color:var(--dark); }
+.review-role { font-size:0.72rem; color:var(--text-soft); margin-top:2px; }
+</style>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+
+<!-- Chatbase AI -->
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="o8LdzyRQVribIUpiIYsho";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
+<script>
+// ===== RATING BARS ANIMATION =====
+const bars = document.querySelectorAll('.rb-fill');
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      setTimeout(() => { entry.target.style.width = entry.target.dataset.width; }, 200);
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+bars.forEach(b => barObserver.observe(b));
+
+// ===== INTERACTIVE RATING =====
+const starLabels = ['', 'খুব খারাপ 😞', 'খারাপ 😐', 'ঠিকঠাক 🙂', 'ভালো 😊', 'অসাধারণ! 🌟'];
+let selectedRating = 0;
+
+// Load saved ratings from localStorage
+let savedData = JSON.parse(localStorage.getItem('apsRatings') || '{"total":1000,"sum":4900}');
+
+function updateAvgDisplay() {
+  const avg = (savedData.sum / savedData.total).toFixed(1);
+  document.getElementById('avgRatingNum').textContent = avg;
+  document.getElementById('ratingCountText').textContent = savedData.total.toLocaleString('bn') + '+ অভিভাবকের রেটিং';
+}
+updateAvgDisplay();
+
+// Check if already rated
+if (localStorage.getItem('apsRated')) {
+  document.getElementById('ratingBox').innerHTML = `
+    <div style="text-align:center;padding:20px 0;">
+      <span style="font-size:2.5rem;">✅</span>
+      <div style="font-weight:700;color:var(--forest);margin-top:10px;font-family:'Noto Serif Bengali',serif;">আপনি আগেই রেটিং দিয়েছেন!</div>
+      <div style="font-size:0.8rem;color:var(--text-soft);margin-top:4px;">আপনার মতামতের জন্য ধন্যবাদ 🙏</div>
+    </div>`;
+}
+
+document.querySelectorAll('.urb-star').forEach(star => {
+  star.addEventListener('mouseenter', () => {
+    const val = parseInt(star.dataset.val);
+    document.querySelectorAll('.urb-star').forEach((s, i) => {
+      s.classList.toggle('hovered', i < val);
+    });
+    document.getElementById('urbLabel').textContent = starLabels[val];
+  });
+  star.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.urb-star').forEach((s, i) => {
+      s.classList.remove('hovered');
+      s.classList.toggle('selected', i < selectedRating);
+    });
+    document.getElementById('urbLabel').textContent = selectedRating ? starLabels[selectedRating] : 'স্টারে ক্লিক করুন';
+  });
+  star.addEventListener('click', () => {
+    selectedRating = parseInt(star.dataset.val);
+    document.querySelectorAll('.urb-star').forEach((s, i) => {
+      s.classList.toggle('selected', i < selectedRating);
+    });
+    document.getElementById('urbLabel').textContent = starLabels[selectedRating];
+    const btn = document.getElementById('urbSubmit');
+    btn.classList.add('active');
+    btn.disabled = false;
+  });
+});
+
+function submitRating() {
+  if (!selectedRating) return;
+  savedData.total += 1;
+  savedData.sum += selectedRating;
+  localStorage.setItem('apsRatings', JSON.stringify(savedData));
+  localStorage.setItem('apsRated', 'true');
+  updateAvgDisplay();
+  document.getElementById('urbStars').style.display = 'none';
+  document.getElementById('urbLabel').style.display = 'none';
+  document.getElementById('urbSubmit').style.display = 'none';
+  document.getElementById('urbThanks').style.display = 'block';
+}
+
+// ===== LANGUAGE SWITCHER =====
+function applyLang(lang) {
+  document.querySelectorAll('[data-bn]').forEach(el => {
+    const text = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-bn');
+    if (text) el.innerHTML = text;
+  });
+  document.documentElement.lang = lang;
+  const btn = document.getElementById('langToggle');
+  if (btn) btn.textContent = lang === 'bn' ? 'EN' : 'বাং';
+}
+const savedLang = localStorage.getItem('lang') || 'bn';
+if (savedLang === 'en') applyLang('en');
+document.addEventListener('langChange', e => applyLang(e.detail));
+</script>
+</body>
+</html>

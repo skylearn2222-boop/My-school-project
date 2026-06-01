@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ফলাফল | আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.result-highlight {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 16px; margin-bottom: 40px;
+}
+.rh-card {
+  background: linear-gradient(135deg, var(--deep), var(--royal));
+  border-radius: 22px; padding: 28px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.rh-icon { font-size: 2.2rem; margin-bottom: 10px; }
+.rh-num { font-size: 2.4rem; font-weight: 800; color: var(--gold-light); line-height: 1; }
+.rh-label { color: rgba(255,255,255,0.65); font-size: 0.82rem; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div id="topbar-placeholder"></div><div id="drawer-placeholder"></div><div id="fab-placeholder"></div>
+<div class="page-hero"><div class="page-hero-grid"></div><div class="page-hero-content"><div class="page-hero-tag"><i class="fas fa-trophy"></i> ফলাফল</div><h1>গৌরবময় <em>সাফল্যের</em><br>ইতিহাস</h1></div></div>
+<section class="section">
+  <div class="container">
+
+    <!-- Google Drive Result Button -->
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="sec-tag" style="justify-content:center;margin-bottom:12px;"><i class="fas fa-file-pdf"></i> পরীক্ষার ফলাফল</div>
+      <h2 class="sec-title">ফলাফল দেখুন ও ডাউনলোড করুন</h2>
+      <p class="sec-desc" style="max-width:480px;margin:0 auto 28px;">নিচের বাটনে click করলে Google Drive এ সব শ্রেণির ফলাফলের PDF পাবেন। যার যেটা দরকার download করুন।</p>
+      <a href="https://drive.google.com/drive/folders/1WwXIOusicVNH3HZWpYNf3IadSUnnTXYm" target="_blank"
+        style="display:inline-flex;align-items:center;gap:12px;
+               background:linear-gradient(135deg,var(--forest),var(--emerald));
+               color:white;text-decoration:none;
+               padding:16px 32px;border-radius:18px;
+               font-size:1rem;font-weight:700;
+               font-family:'Sora','Noto Serif Bengali',sans-serif;
+               box-shadow:0 12px 32px rgba(13,74,47,0.35);
+               transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);"
+        onmouseover="this.style.transform='translateY(-4px) scale(1.04)'"
+        onmouseout="this.style.transform=''">
+        <i class="fab fa-google-drive" style="font-size:1.3rem;"></i>
+        সব শ্রেণির ফলাফল দেখুন
+        <i class="fas fa-arrow-right"></i>
+      </a>
+      <p style="margin-top:14px;font-size:0.78rem;color:var(--text-soft);">
+        <i class="fas fa-info-circle"></i> নতুন ফলাফল আপলোড হলে এখানে স্বয়ংক্রিয়ভাবে দেখা যাবে
+      </p>
+    </div>
+
+    <div class="result-highlight" data-stagger>
+      <div class="rh-card reveal"><div class="rh-icon">🏆</div><div class="rh-num">১ম</div><div class="rh-label">PSC ২০১২ — উপজেলায় প্রথম</div></div>
+      <div class="rh-card reveal"><div class="rh-icon">⭐</div><div class="rh-num">৬</div><div class="rh-label">SSC ২০২৪ — A+ প্রাপ্ত (বিজ্ঞান)</div></div>
+      <div class="rh-card reveal"><div class="rh-icon">🎓</div><div class="rh-num">১০০০+</div><div class="rh-label">মোট সফল শিক্ষার্থী</div></div>
+    </div>
+    <div class="empty-state reveal"><div class="empty-icon">📊</div><div class="empty-title">বিস্তারিত ফলাফল শীঘ্রই আসছে</div><div class="empty-desc">বছরওয়ারি ফলাফল ও মেধাবী শিক্ষার্থীদের তালিকা এখানে যোগ করা হবে।</div></div>
+  </div>
+</section>
+<div id="footer-placeholder"></div><script src="components.js"></script>
+</body></html>

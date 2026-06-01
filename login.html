@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>লগইন | আফতাবউদ্দিন স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(150deg, #061a0d 0%, #072b1a 45%, #0d4a2f 100%);
+  margin-top: 62px;
+}
+.login-card {
+  background: white;
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  max-width: 400px;
+  width: 100%;
+}
+body.dark .login-card { background: #152010; }
+
+/* Panda */
+.panda-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.panda {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.panda svg { width: 100%; height: 100%; }
+
+.login-header { text-align: center; margin-bottom: 24px; }
+.login-header h2 { font-family:'Noto Serif Bengali',serif; color:var(--dark); margin:0 0 6px; font-size:1.4rem; }
+body.dark .login-header h2 { color:white; }
+.login-header p { color:var(--text-soft); font-size:0.88rem; margin:0; }
+
+.form-group { margin-bottom: 18px; }
+.form-group label { display:block; color:var(--dark); font-weight:600; margin-bottom:7px; font-size:0.88rem; }
+body.dark .form-group label { color:white; }
+
+.input-wrap { position: relative; }
+.form-group input {
+  width: 100%;
+  padding: 12px 44px 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background: white;
+  color: var(--dark);
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+body.dark .form-group input { background:#1a241b; color:white; border-color:#2a3a2b; }
+.form-group input:focus { outline:none; border-color:var(--forest); box-shadow:0 0 0 3px rgba(13,74,47,0.1); }
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+.forgot-link {
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 16px;
+}
+.forgot-link button {
+  background: none;
+  border: none;
+  color: var(--forest);
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--forest), var(--emerald));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 14px;
+}
+.login-btn:hover:not(:disabled) { transform:translateY(-2px); box-shadow:0 10px 24px rgba(13,74,47,0.35); }
+.login-btn:disabled { opacity:0.6; cursor:not-allowed; }
+
+.toggle-auth { text-align:center; color:var(--text-soft); font-size:0.88rem; }
+.toggle-auth button { background:none; border:none; color:var(--forest); cursor:pointer; text-decoration:underline; font-weight:600; }
+
+.error-msg { background:#fee2e2; color:#dc2626; padding:11px 14px; border-radius:10px; margin-bottom:16px; display:none; font-size:0.88rem; }
+.success-msg { background:#dcfce7; color:#16a34a; padding:11px 14px; border-radius:10px; margin-bottom:16px; display:none; font-size:0.88rem; }
+body.dark .error-msg { background:rgba(220,38,38,0.15); }
+body.dark .success-msg { background:rgba(22,163,74,0.15); }
+
+.loading { display:inline-block; width:15px; height:15px; border:2px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.8s linear infinite; vertical-align:middle; }
+@keyframes spin { to{transform:rotate(360deg)} }
+</style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<div class="login-container">
+  <div class="login-card">
+
+    <!-- Panda -->
+    <div class="panda-wrap">
+      <div class="panda" id="panda" title="পাসওয়ার্ড দেখুন">
+        <svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg" id="pandaSvg" style="transition:transform 0.3s;">
+          <!-- ears -->
+          <circle cx="22" cy="28" r="15" fill="#222"/>
+          <circle cx="78" cy="28" r="15" fill="#222"/>
+          <!-- head -->
+          <circle cx="50" cy="55" r="37" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+          <!-- eye patches -->
+          <ellipse cx="34" cy="48" rx="13" ry="12" fill="#222"/>
+          <ellipse cx="66" cy="48" rx="13" ry="12" fill="#222"/>
+
+          <!-- EYES OPEN (peeking, mischievous) -->
+          <g id="eyesOpen">
+            <circle cx="34" cy="48" r="6.5" fill="white"/>
+            <circle cx="66" cy="48" r="6.5" fill="white"/>
+            <!-- pupils looking up/forward (mischievous peek) -->
+            <circle cx="35" cy="46" r="3.8" fill="#111"/>
+            <circle cx="67" cy="46" r="3.8" fill="#111"/>
+            <!-- shine -->
+            <circle cx="36.5" cy="44.5" r="1.3" fill="white"/>
+            <circle cx="68.5" cy="44.5" r="1.3" fill="white"/>
+            <!-- happy eyebrows raised -->
+            <path d="M26 38 Q34 33 42 38" stroke="#222" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M58 38 Q66 33 74 38" stroke="#222" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- EYES COVERED (hands over eyes, sad) -->
+          <g id="eyesClosed" style="display:none;">
+            <!-- sad eyebrows -->
+            <path d="M26 40 Q34 36 42 40" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M58 40 Q66 36 74 40" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- left arm/hand covering eye -->
+            <rect x="16" y="44" width="30" height="16" rx="8" fill="#c8a97e" stroke="#a07850" stroke-width="1.2"/>
+            <circle cx="16" cy="52" r="6" fill="#c8a97e" stroke="#a07850" stroke-width="1"/>
+            <circle cx="46" cy="52" r="6" fill="#c8a97e" stroke="#a07850" stroke-width="1"/>
+            <!-- right arm/hand covering eye -->
+            <rect x="54" y="44" width="30" height="16" rx="8" fill="#c8a97e" stroke="#a07850" stroke-width="1.2"/>
+            <circle cx="54" cy="52" r="6" fill="#c8a97e" stroke="#a07850" stroke-width="1"/>
+            <circle cx="84" cy="52" r="6" fill="#c8a97e" stroke="#a07850" stroke-width="1"/>
+            <!-- fingers lines -->
+            <line x1="24" y1="44" x2="24" y2="60" stroke="#a07850" stroke-width="1" stroke-linecap="round"/>
+            <line x1="31" y1="44" x2="31" y2="60" stroke="#a07850" stroke-width="1" stroke-linecap="round"/>
+            <line x1="38" y1="44" x2="38" y2="60" stroke="#a07850" stroke-width="1" stroke-linecap="round"/>
+            <line x1="62" y1="44" x2="62" y2="60" stroke="#a07850" stroke-width="1" stroke-linecap="round"/>
+            <line x1="69" y1="44" x2="69" y2="60" stroke="#a07850" stroke-width="1" stroke-linecap="round"/>
+            <line x1="76" y1="44" x2="76" y2="60" stroke="#a07850" stroke-width="1" stroke-linecap="round"/>
+          </g>
+
+          <!-- nose -->
+          <ellipse cx="50" cy="63" rx="7" ry="5" fill="#f9a8d4"/>
+
+          <!-- MOUTH happy (open) -->
+          <path id="mouthHappy" d="M42 69 Q50 77 58 69" stroke="#888" stroke-width="2" fill="#fda4af" stroke-linecap="round"/>
+
+          <!-- MOUTH sad -->
+          <path id="mouthSad" d="M42 74 Q50 68 58 74" stroke="#aaa" stroke-width="2" fill="none" stroke-linecap="round" style="display:none;"/>
+
+          <!-- cheeks (only when happy) -->
+          <circle id="cheeks" cx="28" cy="68" r="8" fill="#fecdd3" opacity="0.5"/>
+          <circle cx="72" cy="68" r="8" fill="#fecdd3" opacity="0.5" id="cheeks2"/>
+
+          <!-- sweat drop when sad -->
+          <g id="sweatDrop" style="display:none;">
+            <ellipse cx="80" cy="40" rx="4" ry="6" fill="#bfdbfe" opacity="0.8"/>
+            <path d="M78 38 Q80 34 82 38" stroke="#93c5fd" stroke-width="1" fill="none"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="login-header">
+      <h2 id="formTitle">লগইন করুন</h2>
+      <p id="formSubtitle">আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+    </div>
+
+    <div id="errorMsg" class="error-msg"></div>
+    <div id="successMsg" class="success-msg"></div>
+
+    <form id="authForm">
+      <div class="form-group">
+        <label>ইমেইল</label>
+        <div class="input-wrap">
+          <input type="email" id="email" placeholder="example@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>পাসওয়ার্ড</label>
+        <div class="input-wrap">
+          <input type="password" id="password" placeholder="••••••••" required>
+          <button type="button" class="eye-btn" id="eyeBtn">🐼</button>
+        </div>
+      </div>
+
+      <div class="forgot-link" id="forgotWrap">
+        <button type="button" id="forgotBtn">পাসওয়ার্ড ভুলে গেছেন?</button>
+      </div>
+
+      <button type="submit" class="login-btn" id="authBtn">লগইন</button>
+    </form>
+
+    <div class="toggle-auth">
+      <span id="toggleText">অ্যাকাউন্ট নেই?</span>
+      <button type="button" id="toggleBtn">সাইন আপ করুন</button>
+    </div>
+  </div>
+</div>
+
+<script src="components.js"></script>
+<script type="module">
+import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from './firebase-config.js';
+import { sendPasswordResetEmail, sendEmailVerification } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+let isSignUp = false;
+let showPass = false;
+
+const panda = document.getElementById('panda');
+const eyesOpen = document.getElementById('eyesOpen');
+const eyesClosed = document.getElementById('eyesClosed');
+const eyeBtn = document.getElementById('eyeBtn');
+const passwordInput = document.getElementById('password');
+const emailInput = document.getElementById('email');
+const authBtn = document.getElementById('authBtn');
+const toggleBtn = document.getElementById('toggleBtn');
+const forgotWrap = document.getElementById('forgotWrap');
+const forgotBtn = document.getElementById('forgotBtn');
+const errorMsg = document.getElementById('errorMsg');
+const successMsg = document.getElementById('successMsg');
+
+// Redirect if already logged in
+onAuthStateChanged(auth, (user) => {
+  if (user) window.location.href = 'dashboard.html';
+});
+
+// Panda / eye toggle
+function togglePassword() {
+  showPass = !showPass;
+  passwordInput.type = showPass ? 'text' : 'password';
+  eyesOpen.style.display = showPass ? 'none' : 'block';
+  eyesClosed.style.display = showPass ? 'block' : 'none';
+  document.getElementById('mouthHappy').style.display = showPass ? 'none' : 'block';
+  document.getElementById('mouthSad').style.display = showPass ? 'block' : 'none';
+  document.getElementById('cheeks').style.display = showPass ? 'none' : 'block';
+  document.getElementById('cheeks2').style.display = showPass ? 'none' : 'block';
+  document.getElementById('sweatDrop').style.display = showPass ? 'block' : 'none';
+  // panda shakes head when covering eyes
+  const svg = document.getElementById('pandaSvg');
+  svg.style.transform = showPass ? 'rotate(-5deg)' : 'rotate(0deg)';
+}
+panda.addEventListener('click', togglePassword);
+eyeBtn.addEventListener('click', togglePassword);
+
+// Toggle sign up / login
+toggleBtn.addEventListener('click', () => {
+  isSignUp = !isSignUp;
+  document.getElementById('formTitle').textContent = isSignUp ? 'সাইন আপ করুন' : 'লগইন করুন';
+  document.getElementById('formSubtitle').textContent = isSignUp ? 'নতুন অ্যাকাউন্ট তৈরি করুন' : 'আপনার অ্যাকাউন্টে প্রবেশ করুন';
+  authBtn.textContent = isSignUp ? 'সাইন আপ' : 'লগইন';
+  toggleText.textContent = isSignUp ? 'আগেই অ্যাকাউন্ট আছে?' : 'অ্যাকাউন্ট নেই?';
+  toggleBtn.textContent = isSignUp ? 'লগইন করুন' : 'সাইন আপ করুন';
+  forgotWrap.style.display = isSignUp ? 'none' : 'block';
+  hideMessages();
+});
+
+// Forgot password
+forgotBtn.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+  if (!email) { showError('আগে ইমেইল দিন'); return; }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    showSuccess('পাসওয়ার্ড রিসেট লিংক ইমেইলে পাঠানো হয়েছে ✉️');
+  } catch(e) {
+    showError('ইমেইলটি সঠিক নয় বা অ্যাকাউন্ট নেই');
+  }
+});
+
+// Form submit
+document.getElementById('authForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  authBtn.disabled = true;
+  authBtn.innerHTML = '<span class="loading"></span>';
+
+  try {
+    if (isSignUp) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError('ইমেইলটি সঠিক নয়। সঠিকভাবে লিখুন।');
+        authBtn.disabled = false;
+        authBtn.textContent = 'সাইন আপ';
+        return;
+      }
+      await createUserWithEmailAndPassword(auth, email, password);
+    } else {
+      await signInWithEmailAndPassword(auth, email, password);
+    }
+    showSuccess('সফল! যাচ্ছি...');
+    setTimeout(() => window.location.href = 'dashboard.html', 1000);
+  } catch(err) {
+    let msg = 'কিছু একটা সমস্যা হয়েছে';
+    if (err.code === 'auth/invalid-email') msg = 'ইমেইল সঠিক নয়';
+    if (err.code === 'auth/weak-password') msg = 'পাসওয়ার্ড কমপক্ষে ৬ অক্ষর হতে হবে';
+    if (err.code === 'auth/email-already-in-use') msg = 'এই ইমেইলে আগেই অ্যাকাউন্ট আছে';
+    if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') msg = 'ইমেইল বা পাসওয়ার্ড ভুল';
+    if (err.code === 'auth/wrong-password') msg = 'পাসওয়ার্ড ভুল';
+    showError(msg);
+    authBtn.disabled = false;
+    authBtn.textContent = isSignUp ? 'সাইন আপ' : 'লগইন';
+  }
+});
+
+function showError(msg) { errorMsg.textContent = msg; errorMsg.style.display = 'block'; successMsg.style.display = 'none'; }
+function showSuccess(msg) { successMsg.textContent = msg; successMsg.style.display = 'block'; errorMsg.style.display = 'none'; }
+function hideMessages() { errorMsg.style.display = 'none'; successMsg.style.display = 'none'; }
+</script>
+</body>
+</html>

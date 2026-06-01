@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>নোটিশ বোর্ড | আফতাবউদ্দিন প্রি-ক্যাডেট স্কুল</title>
+<link rel="stylesheet" href="shared.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d4a2f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="APS School">
+<link rel="apple-touch-icon" href="logo.webp">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div id="topbar-placeholder"></div>
+<div id="drawer-placeholder"></div>
+<div id="fab-placeholder"></div>
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag"><i class="fas fa-bell"></i> নোটিশ বোর্ড</div>
+    <h1>সকল <em>নোটিশ</em> ও<br>বিজ্ঞপ্তি</h1>
+  </div>
+</div>
+<style>
+/* ===== RAINBOW GLOW BUTTON ===== */
+@keyframes rainbowGlow {
+  0%   { box-shadow: 0 0 18px 4px #ff0080, 0 0 40px 8px #ff008044; border-color: #ff0080; }
+  14%  { box-shadow: 0 0 18px 4px #ff6600, 0 0 40px 8px #ff660044; border-color: #ff6600; }
+  28%  { box-shadow: 0 0 18px 4px #ffcc00, 0 0 40px 8px #ffcc0044; border-color: #ffcc00; }
+  42%  { box-shadow: 0 0 18px 4px #00cc44, 0 0 40px 8px #00cc4444; border-color: #00cc44; }
+  57%  { box-shadow: 0 0 18px 4px #00aaff, 0 0 40px 8px #00aaff44; border-color: #00aaff; }
+  71%  { box-shadow: 0 0 18px 4px #7722ff, 0 0 40px 8px #7722ff44; border-color: #7722ff; }
+  85%  { box-shadow: 0 0 18px 4px #ff00cc, 0 0 40px 8px #ff00cc44; border-color: #ff00cc; }
+  100% { box-shadow: 0 0 18px 4px #ff0080, 0 0 40px 8px #ff008044; border-color: #ff0080; }
+}
+
+@keyframes rainbowBg {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatPulse {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-6px) scale(1.02); }
+}
+
+.notion-glow-wrap {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px;
+  margin: 40px 0 48px;
+}
+
+.notion-glow-btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 18px 36px; border-radius: 20px;
+  text-decoration: none; font-weight: 800;
+  font-size: 1.05rem; font-family: 'Sora','Noto Serif Bengali',sans-serif;
+  color: white; border: 2px solid #ff0080;
+  background: linear-gradient(270deg, #ff0080, #ff6600, #ffcc00, #00cc44, #00aaff, #7722ff, #ff00cc, #ff0080);
+  background-size: 400% 400%;
+  animation: rainbowGlow 3s linear infinite, rainbowBg 4s ease infinite, floatPulse 3s ease-in-out infinite;
+  position: relative; overflow: hidden;
+  letter-spacing: 0.3px;
+}
+
+.notion-glow-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.25);
+  border-radius: inherit;
+}
+
+.notion-glow-btn > * { position: relative; z-index: 1; }
+
+.notion-glow-btn:hover {
+  animation-play-state: paused;
+  transform: scale(1.06);
+  box-shadow: 0 0 32px 10px #00aaff88, 0 0 80px 20px #ff008833;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.notion-glow-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+
+.notion-glow-label { font-size: 0.7rem; opacity: 0.8; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 2px; }
+.notion-glow-title { font-size: 1rem; font-weight: 800; }
+
+.notion-glow-hint {
+  font-size: 0.75rem; color: var(--text-soft);
+  display: flex; align-items: center; gap: 6px;
+}
+</style>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Notion Glow Button -->
+    <div class="notion-glow-wrap reveal">
+      <a href="https://www.notion.so/355a4a09aafa80fb9338de599e1efe3b?v=355a4a09aafa80b89780000ca86ff453&source=copy_link"
+         target="_blank" class="notion-glow-btn">
+        <div class="notion-glow-icon">📋</div>
+        <div>
+          <span class="notion-glow-label">সর্বশেষ নোটিশ</span>
+          <span class="notion-glow-title">নোটিশ বোর্ড দেখুন</span>
+        </div>
+        <i class="fas fa-arrow-right" style="font-size:1rem;opacity:0.9;"></i>
+      </a>
+      <div class="notion-glow-hint">
+        <i class="fas fa-bolt"></i> ক্লিক করলে সরাসরি সকল নোটিশ দেখা যাবে
+      </div>
+    </div>
+
+  </div>
+</section>
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+</body>
+</html>
