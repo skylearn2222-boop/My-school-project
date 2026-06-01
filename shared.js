@@ -1,3 +1,6 @@
+// ===== PUSH NOTIFICATION PERMISSION =====
+import { requestNotificationPermission } from './firebase-config.js';
+
 // ===== TOPBAR SCROLL =====
 const topbar = document.querySelector('.topbar');
 if (topbar) {
@@ -33,13 +36,21 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// Push Notification Permission — সাইটে ঢুকলেই চাইবে
+window.addEventListener('load', () => {
+  if ('Notification' in window && Notification.permission === 'default') {
+    navigator.serviceWorker.ready.then(() => {
+      requestNotificationPermission();
+    });
+  }
+});
+
 // PWA Install Prompt
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // Install banner দেখাবে
   const banner = document.createElement('div');
   banner.id = 'pwa-banner';
   banner.innerHTML = `
@@ -71,8 +82,6 @@ window.addEventListener('beforeinstallprompt', e => {
     </div>
   `;
   document.body.appendChild(banner);
-
-  // ১০ সেকেন্ড পরে auto hide
   setTimeout(() => banner.remove(), 10000);
 });
 
@@ -85,7 +94,6 @@ function installPWA() {
   });
 }
 
-// Slide up animation
 const pwaStyle = document.createElement('style');
 pwaStyle.textContent = `@keyframes slideUp { from { opacity:0; transform:translateX(-50%) translateY(30px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }`;
 document.head.appendChild(pwaStyle);
@@ -160,4 +168,3 @@ if (document.readyState === 'loading') {
 } else {
   setTimeout(initReveal, 600);
 }
-
